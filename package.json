@@ -1,0 +1,7 @@
+{
+  "name": "bournelaw-website",
+  "version": "1.0.0",
+  "description": "Bourne Law immigration website",
+  "scripts": { "start": "npx serve ." },
+  "dependencies": { "stripe": "^14.0.0" }
+}
