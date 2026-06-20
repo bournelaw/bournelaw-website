@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bourne Law — Solicitor Portal</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f7;color:#1a1a2e;min-height:100vh}
+/* LOGIN */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:#fff;border-radius:12px;padding:40px;width:100%;max-width:400px;box-shadow:0 4px 24px rgba(0,0,0,0.1)}
+.login-logo{font-size:20px;font-weight:700;color:#0f2654;margin-bottom:4px}
+.login-sub{font-size:13px;color:#888;margin-bottom:28px}
+.login-box input{width:100%;padding:11px 14px;border:1px solid #dde;border-radius:8px;font-size:15px;margin-bottom:14px;outline:none}
+.login-box input:focus{border-color:#0f2654}
+.login-btn{width:100%;background:#0f2654;color:#fff;border:none;padding:13px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer}
+.login-btn:hover{background:#1a3a6b}
+.login-error{color:#c0392b;font-size:13px;margin-top:8px;display:none}
+/* APP */
+#app-screen{display:none;min-height:100vh}
+.topbar{background:#0f2654;color:#fff;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar-logo{font-size:16px;font-weight:700;letter-spacing:-0.3px}
+.topbar-right{display:flex;align-items:center;gap:16px;font-size:13px}
+.topbar-right button{background:rgba(255,255,255,0.15);border:none;color:#fff;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:13px}
+.topbar-right button:hover{background:rgba(255,255,255,0.25)}
+.main{display:flex;height:calc(100vh - 56px)}
+/* SIDEBAR */
+.sidebar{width:380px;background:#fff;border-right:1px solid #e0e4ef;overflow-y:auto;flex-shrink:0}
+.sidebar-header{padding:16px 20px;border-bottom:1px solid #e0e4ef;display:flex;align-items:center;justify-content:space-between}
+.sidebar-header h2{font-size:14px;font-weight:700;color:#0f2654}
+.filter-tabs{display:flex;gap:6px}
+.filter-tab{background:none;border:1px solid #dde;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;color:#555}
+.filter-tab.active{background:#0f2654;color:#fff;border-color:#0f2654}
+.matter-list{padding:8px}
+.matter-item{padding:14px 16px;border-radius:8px;cursor:pointer;border:1px solid transparent;margin-bottom:4px;transition:all 0.15s}
+.matter-item:hover{background:#f7f8fc;border-color:#e0e4ef}
+.matter-item.active{background:#e8eef7;border-color:#0f2654}
+.matter-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.matter-name{font-size:14px;font-weight:600;color:#0f2654}
+.matter-date{font-size:11px;color:#aaa}
+.matter-service{font-size:12px;color:#555;margin-bottom:6px}
+.status-badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
+.status-pending{background:#fff3cd;color:#856404}
+.status-released{background:#d1e7dd;color:#0a3622}
+.no-matters{padding:40px;text-align:center;color:#888;font-size:14px}
+/* DETAIL PANEL */
+.detail{flex:1;overflow-y:auto;background:#f0f2f7}
+.detail-empty{display:flex;align-items:center;justify-content:center;height:100%;color:#888;font-size:15px;flex-direction:column;gap:12px}
+.detail-empty .icon{font-size:48px;opacity:0.3}
+.detail-inner{padding:24px;max-width:900px;margin:0 auto}
+.detail-header{background:#fff;border-radius:10px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.detail-title{font-size:18px;font-weight:700;color:#0f2654;margin-bottom:4px}
+.detail-sub{font-size:13px;color:#888}
+.action-btns{display:flex;gap:10px;flex-shrink:0}
+.btn{padding:9px 18px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:background 0.15s}
+.btn-primary{background:#0f2654;color:#fff}
+.btn-primary:hover{background:#1a3a6b}
+.btn-primary:disabled{background:#aaa;cursor:not-allowed}
+.btn-success{background:#1a7a3a;color:#fff}
+.btn-success:hover{background:#166832}
+.btn-success:disabled{background:#aaa;cursor:not-allowed}
+.btn-outline{background:#fff;color:#0f2654;border:1px solid #0f2654}
+.btn-outline:hover{background:#f0f2f7}
+.section-card{background:#fff;border-radius:10px;padding:20px 24px;margin-bottom:16px}
+.section-card h3{font-size:13px;font-weight:700;color:#0f2654;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;border-bottom:1px solid #e0e4ef;padding-bottom:8px}
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table td{padding:7px 0;vertical-align:top;border-bottom:1px solid #f5f5f5}
+.data-table td:first-child{color:#888;width:42%;font-weight:500;padding-right:12px}
+.notes-area{width:100%;padding:10px 12px;border:1px solid #dde;border-radius:8px;font-size:13px;font-family:inherit;resize:vertical;min-height:80px;outline:none}
+.notes-area:focus{border-color:#0f2654}
+.doc-preview{background:#f7f8fc;border:1px solid #e0e4ef;border-radius:8px;padding:0;overflow:hidden}
+.doc-preview iframe{width:100%;height:600px;border:none}
+.release-success{background:#d1e7dd;color:#0a3622;padding:14px 18px;border-radius:8px;font-size:14px;display:none;margin-top:12px}
+.spinner{display:none;text-align:center;padding:40px;color:#888}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Bourne Law</div>
+    <div class="login-sub">Solicitor Review Portal</div>
+    <input type="password" id="pwd-input" placeholder="Enter portal password" autocomplete="current-password">
+    <button class="login-btn" onclick="doLogin()">Sign in</button>
+    <div class="login-error" id="login-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app-screen">
+  <div class="topbar">
+    <div class="topbar-logo">Bourne Law — Solicitor Portal</div>
+    <div class="topbar-right">
+      <span id="topbar-count"></span>
+      <button onclick="loadMatters()">Refresh</button>
+      <button onclick="doLogout()">Sign out</button>
+    </div>
+  </div>
+  <div class="main">
+    <!-- MATTER LIST -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>All matters</h2>
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="setFilter('all',this)">All</button>
+          <button class="filter-tab" onclick="setFilter('pending',this)">Pending</button>
+          <button class="filter-tab" onclick="setFilter('released',this)">Released</button>
+        </div>
+      </div>
+      <div id="matter-list-container"><div class="no-matters">Loading...</div></div>
+    </div>
+    <!-- DETAIL -->
+    <div class="detail" id="detail-panel">
+      <div class="detail-empty">
+        <div class="icon">⚖️</div>
+        <div>Select a matter to review</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var TOKEN = '';
+var ALL_MATTERS = [];
+var CURRENT_FILTER = 'all';
+
+// ── AUTH ─────────────────────────────────────────────────────────────────────
+async function doLogin() {
+  var pwd = document.getElementById('pwd-input').value.trim();
+  var err = document.getElementById('login-error');
+  err.style.display = 'none';
+  try {
+    var r = await fetch('/api/portal-auth', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({password:pwd})
+    });
+    var d = await r.json();
+    if (d.success) {
+      TOKEN = d.token;
+      sessionStorage.setItem('portal_token', TOKEN);
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app-screen').style.display = 'block';
+      loadMatters();
+    } else {
+      err.style.display = 'block';
+    }
+  } catch(e) { err.textContent = 'Connection error. Try again.'; err.style.display = 'block'; }
+}
+
+function doLogout() {
+  TOKEN = ''; sessionStorage.removeItem('portal_token');
+  document.getElementById('app-screen').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('pwd-input').value = '';
+}
+
+document.getElementById('pwd-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+
+// Auto-login if token in session
+(function() {
+  var t = sessionStorage.getItem('portal_token');
+  if (t) { TOKEN = t; document.getElementById('login-screen').style.display='none'; document.getElementById('app-screen').style.display='block'; loadMatters(); }
+})();
+
+// ── LOAD MATTERS ─────────────────────────────────────────────────────────────
+async function loadMatters() {
+  document.getElementById('matter-list-container').innerHTML = '<div class="no-matters">Loading...</div>';
+  try {
+    var r = await fetch('/api/submissions', { headers:{'Authorization':'Bearer '+TOKEN} });
+    if (r.status === 401) { doLogout(); return; }
+    ALL_MATTERS = await r.json();
+    renderList();
+  } catch(e) {
+    document.getElementById('matter-list-container').innerHTML = '<div class="no-matters">Could not load matters.</div>';
+  }
+}
+
+function setFilter(f, btn) {
+  CURRENT_FILTER = f;
+  document.querySelectorAll('.filter-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderList();
+}
+
+function renderList() {
+  var filtered = CURRENT_FILTER === 'all' ? ALL_MATTERS : ALL_MATTERS.filter(function(m){ return m.status === CURRENT_FILTER; });
+  var pending = ALL_MATTERS.filter(function(m){ return m.status === 'pending'; }).length;
+  document.getElementById('topbar-count').textContent = pending + ' pending';
+  if (!filtered.length) {
+    document.getElementById('matter-list-container').innerHTML = '<div class="no-matters">No matters found.</div>';
+    return;
+  }
+  var html = '';
+  filtered.forEach(function(m) {
+    var d = new Date(m.created_at).toLocaleDateString('en-AU', {day:'numeric',month:'short',year:'numeric'});
+    var badge = m.status === 'released'
+      ? '<span class="status-badge status-released">Released</span>'
+      : '<span class="status-badge status-pending">Pending review</span>';
+    html += '<div class="matter-item" id="mi-'+m.id+'" onclick="openMatter(\''+m.id+'\')">'
+      + '<div class="matter-meta"><span class="matter-name">'+escHtml(m.client_name||'Unknown')+'</span><span class="matter-date">'+d+'</span></div>'
+      + '<div class="matter-service">'+escHtml(m.service_label||m.service)+'</div>'
+      + badge
+      + '</div>';
+  });
+  document.getElementById('matter-list-container').innerHTML = html;
+}
+
+// ── OPEN MATTER ──────────────────────────────────────────────────────────────
+async function openMatter(id) {
+  document.querySelectorAll('.matter-item').forEach(function(el){ el.classList.remove('active'); });
+  var el = document.getElementById('mi-'+id);
+  if (el) el.classList.add('active');
+
+  document.getElementById('detail-panel').innerHTML = '<div class="spinner" style="display:block;padding:60px;text-align:center;color:#888">Loading matter...</div>';
+
+  try {
+    var r = await fetch('/api/submissions?id='+id, { headers:{'Authorization':'Bearer '+TOKEN} });
+    var m = await r.json();
+    renderDetail(m);
+  } catch(e) {
+    document.getElementById('detail-panel').innerHTML = '<div class="detail-empty"><div>Could not load matter.</div></div>';
+  }
+}
+
+function renderDetail(m) {
+  var d = new Date(m.created_at).toLocaleString('en-AU', {day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Australia/Brisbane'});
+  var released = m.status === 'released';
+  var dataRows = '';
+  if (m.data) {
+    Object.entries(m.data).forEach(function(kv) {
+      if (kv[0] === 'service' || kv[0] === 'submitted_at') return;
+      var val = String(kv[1] || '').replace(/\n/g,'<br>');
+      dataRows += '<tr><td>'+escHtml(kv[0].replace(/_/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()}))+'</td><td>'+val+'</td></tr>';
+    });
+  }
+
+  var releasedNote = released
+    ? '<div class="release-success" style="display:block">Document released to '+escHtml(m.client_email||'client')+' on '+new Date(m.released_at).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})+'.</div>'
+    : '';
+
+  var html = '<div class="detail-inner">'
+    + '<div class="detail-header">'
+    +   '<div><div class="detail-title">'+escHtml(m.service_label||m.service)+'</div>'
+    +   '<div class="detail-sub">'+escHtml(m.client_name||'')+(m.client_email ? ' &nbsp;·&nbsp; '+escHtml(m.client_email) : '')+'&nbsp;·&nbsp; Received '+d+'</div></div>'
+    +   '<div class="action-btns">'
+    +     (released ? '' : '<button class="btn btn-success" id="release-btn" onclick="releaseMatter(\''+m.id+'\')">Approve &amp; release to client</button>')
+    +   '</div>'
+    + '</div>'
+    + releasedNote
+    + '<div class="section-card"><h3>Client submission data</h3>'
+    +   '<table class="data-table">'+dataRows+'</table>'
+    + '</div>'
+    + '<div class="section-card"><h3>Solicitor notes (sent to client with document)</h3>'
+    +   '<textarea class="notes-area" id="sol-notes" placeholder="Add any notes, instructions or caveats to include with the released document...">'+(escHtml(m.solicitor_notes||''))+'</textarea>'
+    + '</div>'
+    + '<div class="section-card"><h3>Draft document preview</h3>'
+    +   '<div class="doc-preview"><iframe id="doc-iframe" srcdoc="'+escAttr(m.draft_html||'<p>No document generated.</p>')+'"></iframe></div>'
+    + '</div>'
+    + '<div id="release-result"></div>'
+    + '</div>';
+
+  document.getElementById('detail-panel').innerHTML = html;
+}
+
+async function releaseMatter(id) {
+  var btn = document.getElementById('release-btn');
+  var notes = (document.getElementById('sol-notes') || {}).value || '';
+  btn.disabled = true; btn.textContent = 'Sending to client...';
+  try {
+    var r = await fetch('/api/release', {
+      method:'POST',
+      headers:{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json'},
+      body: JSON.stringify({ id: id, notes: notes })
+    });
+    var result = await r.json();
+    if (result.success) {
+      document.getElementById('release-result').innerHTML = '<div class="release-success" style="display:block;margin-top:0">Document sent to client successfully.</div>';
+      btn.textContent = 'Released';
+      loadMatters();
+      setTimeout(function(){ openMatter(id); }, 800);
+    } else {
+      btn.disabled = false; btn.textContent = 'Approve & release to client';
+      document.getElementById('release-result').innerHTML = '<div style="color:#c0392b;padding:12px;font-size:13px">Error: '+(result.error||'Unknown error')+'</div>';
+    }
+  } catch(e) {
+    btn.disabled = false; btn.textContent = 'Approve & release to client';
+    document.getElementById('release-result').innerHTML = '<div style="color:#c0392b;padding:12px;font-size:13px">Network error. Please try again.</div>';
+  }
+}
+
+function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escAttr(s) { return String(s||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+</script>
+</body>
+</html>
