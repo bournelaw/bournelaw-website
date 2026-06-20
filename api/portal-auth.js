@@ -1,4 +1,4 @@
-// POST /api/portal-auth — verify portal password
+// POST /api/portal-auth — verify portal password [v1781995686]
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   if (req.method === 'OPTIONS') return res.status(200).end();
