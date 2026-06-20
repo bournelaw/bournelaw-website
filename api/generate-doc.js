@@ -1,4 +1,4 @@
-// Document generation for each self-service product
+// Document generation for each self-service product [v1781995686]
 // Returns a complete HTML string suitable for review and email delivery
 
 const TODAY = () => new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Australia/Brisbane' });
