@@ -1,4 +1,4 @@
-// POST /api/release — approve and send document to client
+// POST /api/release — approve and send document to client [v1781995686]
 // Body: { id, notes }
 
 const { createClient } = require('@supabase/supabase-js');
