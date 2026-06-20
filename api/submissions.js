@@ -1,4 +1,4 @@
-// GET /api/submissions         — list all submissions
+// GET /api/submissions         — list all submissions [v1781995686]
 // GET /api/submissions?id=uuid — get single submission with draft HTML
 
 const { createClient } = require('@supabase/supabase-js');
