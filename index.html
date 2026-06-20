@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bourne Law – Immigration, Conveyancing &amp; Legal Services</title>
+  <title>Bourne Law — Immigration, Conveyancing &amp; Legal Services | Gold Coast</title>
   <meta name="description" content="Gold Coast law firm. Immigration visas, conveyancing, litigation, employment law, wills & estates, business law. MARA registered agent LPN 5511816." />
   <link rel="stylesheet" href="style.css" />
   <script src="https://js.stripe.com/v3/"></script>
@@ -182,8 +182,8 @@
       <div class="visa-card">
         <div class="visa-subclass legal-badge">Family Law</div>
         <h3>Family law</h3>
-        <p>Separation, divorce, property settlements, parenting plans, and consent orders. We offer practical, compassionate advice to guide you through difficult times.</p>
-        <div class="visa-fee">Consultation from <strong>$350</strong></div>
+        <p>Separation, divorce, property settlements, parenting plans, consent orders, and prenuptial agreements (Binding Financial Agreements). Compassionate advice through difficult times.</p>
+        <div class="visa-fee">Consultation from <strong>$350</strong> · BFA from <strong>$599</strong></div>
         <a href="#contact-form" class="visa-btn visa-btn--legal" data-visa="Family law">Enquire now</a>
       </div>
 
@@ -193,6 +193,22 @@
         <p>Lease review, negotiation, and drafting for landlords and tenants. Retail, commercial, and industrial leases across Queensland.</p>
         <div class="visa-fee">Lease review from <strong>$550</strong></div>
         <a href="#contact-form" class="visa-btn visa-btn--legal" data-visa="Commercial leasing">Enquire now</a>
+      </div>
+
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Criminal</div>
+        <h3>Criminal &amp; traffic law</h3>
+        <p>Representation in Queensland Magistrates Court for traffic offences, drink driving, minor criminal charges, and bail applications. Protecting your licence and record.</p>
+        <div class="visa-fee">Consultation from <strong>$350</strong></div>
+        <a href="#contact-form" class="visa-btn visa-btn--legal" data-visa="Criminal & traffic law">Enquire now</a>
+      </div>
+
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Dispute Resolution</div>
+        <h3>Mediation &amp; dispute resolution</h3>
+        <p>Before going to court, explore mediation. We represent you in commercial, property, and family disputes — often resolving matters faster and at a fraction of court costs.</p>
+        <div class="visa-fee">Consultation from <strong>$350</strong></div>
+        <a href="#contact-form" class="visa-btn visa-btn--legal" data-visa="Mediation & dispute resolution">Enquire now</a>
       </div>
 
       <div class="visa-card visa-card--cta">
@@ -207,12 +223,198 @@
   </div>
 </section>
 
+<!-- SELF-SERVICE MODULES -->
+<section class="section" id="self-service">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Online — pay &amp; apply now</div>
+      <h2 class="section-title">Self-service legal products</h2>
+      <p class="section-sub">Pay online, complete our guided form, and we handle the rest. All applications reviewed by a qualified solicitor before delivery.</p>
+    </div>
+    <div class="module-grid">
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">📝</div>
+          <div class="module-badge">48hr turnaround</div>
+        </div>
+        <h3>Online Will Kit</h3>
+        <p>Tell us about your assets, beneficiaries, and executor. We draft your legal will — reviewed by Dimitri Bourne, ready for your signature at a JP.</p>
+        <ul class="module-includes">
+          <li>✓ Simple will — <strong>$299</strong></li>
+          <li>✓ Couple's wills + Enduring POA — <strong>$599</strong></li>
+          <li>✓ Solicitor review included</li>
+          <li>✓ Guidance on JP witnessing</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('will')">Start will application →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">⚡</div>
+          <div class="module-badge">Same day</div>
+        </div>
+        <h3>Letter of Demand</h3>
+        <p>Owed money? Provide the details and we'll draft a formal letter of demand on Bourne Law letterhead — signed by a solicitor and sent same day.</p>
+        <ul class="module-includes">
+          <li>✓ Fixed fee — <strong>$149</strong></li>
+          <li>✓ Solicitor-signed letter</li>
+          <li>✓ Sent via email + post</li>
+          <li>✓ Debt recovery advice included</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('demand')">Start letter of demand →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">🛂</div>
+          <div class="module-badge">24hr report</div>
+        </div>
+        <h3>Visa Eligibility Report</h3>
+        <p>Not sure which visa you qualify for? Complete our assessment form and receive a full written eligibility report across all relevant visa pathways.</p>
+        <ul class="module-includes">
+          <li>✓ Fixed fee — <strong>$199</strong></li>
+          <li>✓ All visa pathways assessed</li>
+          <li>✓ Points calculation included</li>
+          <li>✓ Reviewed by MARA agent</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('eligibility')">Start eligibility assessment →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">🎓</div>
+          <div class="module-badge">Full service</div>
+        </div>
+        <h3>Skills Assessment Application</h3>
+        <p>Engineers Australia, VETASSESS, ACS, or TRA — we prepare your complete skills assessment application and lodge on your behalf.</p>
+        <ul class="module-includes">
+          <li>✓ Fixed fee — <strong>$750</strong></li>
+          <li>✓ All assessment bodies</li>
+          <li>✓ Document checklist &amp; review</li>
+          <li>✓ Full lodgement support</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('skills')">Start skills assessment →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">🏢</div>
+          <div class="module-badge">24hr delivery</div>
+        </div>
+        <h3>ABN &amp; Business Registration</h3>
+        <p>Starting a business? We handle your ABN application, business name registration, and ASIC company setup — delivered within 24 hours.</p>
+        <ul class="module-includes">
+          <li>✓ ABN only — <strong>$99</strong></li>
+          <li>✓ ABN + business name — <strong>$149</strong></li>
+          <li>✓ Company (Pty Ltd) setup — <strong>$299</strong></li>
+          <li>✓ All ASIC fees included</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('abn')">Start business registration →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">📋</div>
+          <div class="module-badge">48hr turnaround</div>
+        </div>
+        <h3>Employment Contract</h3>
+        <p>Get a legally compliant, award-compliant employment contract tailored to your business. Suitable for casual, part-time, and full-time employees.</p>
+        <ul class="module-includes">
+          <li>✓ Fixed fee — <strong>$249</strong></li>
+          <li>✓ Award &amp; NES compliant</li>
+          <li>✓ Solicitor reviewed</li>
+          <li>✓ Unlimited minor revisions</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('employment-contract')">Start employment contract →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">💍</div>
+          <div class="module-badge">Binding legal document</div>
+        </div>
+        <h3>Prenuptial Agreement</h3>
+        <p>Protect your assets before marriage with a Binding Financial Agreement (BFA) under the Family Law Act. Covers property, savings, and business interests.</p>
+        <ul class="module-includes">
+          <li>✓ Fixed fee — <strong>$599</strong></li>
+          <li>✓ Binding Financial Agreement (s90B)</li>
+          <li>✓ Solicitor certificate of advice included</li>
+          <li>✓ Covers property, super &amp; business</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('prenup')">Start prenuptial agreement →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">🤝</div>
+          <div class="module-badge">Clean break</div>
+        </div>
+        <h3>Separation Agreement</h3>
+        <p>Separating or divorced? We prepare a legally binding property division and financial agreement so both parties can move forward with certainty.</p>
+        <ul class="module-includes">
+          <li>✓ Fixed fee — <strong>$799</strong></li>
+          <li>✓ Property &amp; asset division</li>
+          <li>✓ Consent order ready (if needed)</li>
+          <li>✓ Solicitor reviewed &amp; certified</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('separation')">Start separation agreement →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">✍️</div>
+          <div class="module-badge">Same day</div>
+        </div>
+        <h3>Statutory Declaration</h3>
+        <p>Need a stat dec drafted for immigration, legal, or personal purposes? We prepare it for you — ready to sign before a JP or solicitor same day.</p>
+        <ul class="module-includes">
+          <li>✓ Fixed fee — <strong>$49</strong></li>
+          <li>✓ Commonwealth or QLD form</li>
+          <li>✓ Suitable for immigration &amp; legal use</li>
+          <li>✓ JP witnessing guidance included</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('stat-dec')">Start statutory declaration →</button>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">🔍</div>
+          <div class="module-badge">48hr review</div>
+        </div>
+        <h3>Commercial Contract Review</h3>
+        <p>Before you sign, get a solicitor to review your contract. We identify risk clauses, unfair terms, and missing protections — with a plain-English summary.</p>
+        <ul class="module-includes">
+          <li>✓ Up to 10 pages — <strong>$349</strong></li>
+          <li>✓ 10–30 pages — <strong>$549</strong></li>
+          <li>✓ Risk report + redline comments</li>
+          <li>✓ 30-min follow-up call included</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('contract-review')">Start contract review →</button>
+      </div>
+
+    </div>
+    <p class="module-disclaimer">All self-service products are prepared with AI assistance and reviewed by a qualified Australian solicitor before delivery. Document preparation is not legal advice. For complex matters, book a <a href="#contact-form">full consultation</a>.</p>
+  </div>
+</section>
+
+<!-- MODULE MODAL -->
+<div id="module-modal" class="module-modal-overlay" style="display:none">
+  <div class="module-modal">
+    <div class="module-modal-header">
+      <h3 id="modal-service-title">Application form</h3>
+      <button onclick="closeModuleModal()" class="modal-close">✕</button>
+    </div>
+    <div id="module-form-container"></div>
+  </div>
+</div>
+
 <!-- CONTACT FORM -->
 <section class="section" id="contact-form">
   <div class="section-inner" style="max-width: 620px;">
     <h2 class="section-title">Send an enquiry</h2>
     <p class="section-sub">We'll respond within one business day.</p>
-    <form class="contact-form" id="enquiry-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+    <form class="contact-form" id="enquiry-form" action="https://formspree.io/f/xlgyrdzp" method="POST">
       <div class="form-row">
         <div class="form-group">
           <label>Full name</label>
@@ -248,8 +450,24 @@
             <option>Wills &amp; estates</option>
             <option>Business &amp; commercial law</option>
             <option>Family law</option>
+            <option>Prenuptial agreement (BFA)</option>
+            <option>Separation &amp; property settlement</option>
+            <option>Criminal &amp; traffic law</option>
+            <option>Mediation &amp; dispute resolution</option>
             <option>Commercial leasing</option>
             <option>General legal consultation</option>
+          </optgroup>
+          <optgroup label="Self-service (pay &amp; apply online)">
+            <option>Online Will Kit ($299)</option>
+            <option>Letter of Demand ($149)</option>
+            <option>Visa Eligibility Report ($199)</option>
+            <option>Skills Assessment Application ($750)</option>
+            <option>ABN &amp; Business Registration (from $99)</option>
+            <option>Employment Contract ($249)</option>
+            <option>Prenuptial Agreement — BFA ($599)</option>
+            <option>Separation Agreement ($799)</option>
+            <option>Statutory Declaration ($49)</option>
+            <option>Commercial Contract Review (from $349)</option>
           </optgroup>
         </select>
       </div>
