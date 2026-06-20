@@ -1,7 +1,11 @@
 {
   "name": "bournelaw-website",
   "version": "1.0.0",
-  "description": "Bourne Law immigration website",
+  "description": "Bourne Law immigration and legal services website",
   "scripts": { "start": "npx serve ." },
-  "dependencies": { "stripe": "^14.0.0" }
+  "dependencies": {
+    "stripe": "^14.0.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "resend": "^3.2.0"
+  }
 }
