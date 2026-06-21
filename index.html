@@ -633,7 +633,7 @@
 var stripe, cardEl;
 window.addEventListener('load', function() {
   if (typeof Stripe === 'undefined') return;
-  stripe = Stripe('pk_test_51TkUflJRSvy7vrhHjr4DWgpZkAbf06NV2slkbQCVtTixFMladmNUpEDGFnEkSlkdEEJwkZedHfv0HDs4hVGCVXKs00NuUYHaBC');
+  stripe = Stripe('pk_live_51TkUeiR6KefqwC5GX9iV8Vt6p3Bvj9KJ3aygI5nGLs9fEKQuCZipXDKhvTn7muBzGWBW37AOniIQcGTDKUAtubPX00ypDm9sbs');
   var elements = stripe.elements();
   cardEl = elements.create('card', {
     style: {
