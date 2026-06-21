@@ -435,26 +435,26 @@ body {
 .consult-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 2rem; letter-spacing: 0.3px; }
 .form-group { margin-bottom: 0; }
 .form-input {
-  width: 100%; background: transparent; border: none;
-  border-bottom: 1px solid var(--border);
-  padding: 14px 4px; font-size: 12px; color: var(--dark);
+  width: 100%; background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(210,210,210,0.9);
+  padding: 13px 16px; font-size: 12px; color: var(--dark);
   font-family: inherit; letter-spacing: 1.5px; text-transform: uppercase;
   transition: border-color 0.2s; outline: none;
-  display: block; margin-bottom: 1px;
+  display: block; margin-bottom: 10px;
 }
-.form-input::placeholder { color: var(--text-muted); }
-.form-input:focus { border-bottom-color: var(--teal); }
+.form-input::placeholder { color: #aaa; font-size: 11px; }
+.form-input:focus { border-color: var(--teal); }
 .form-textarea {
-  width: 100%; background: transparent; border: none;
-  border-bottom: 1px solid var(--border);
-  padding: 14px 4px; font-size: 12px; color: var(--dark);
+  width: 100%; background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(210,210,210,0.9);
+  padding: 13px 16px; font-size: 12px; color: var(--dark);
   font-family: inherit; letter-spacing: 1px;
   transition: border-color 0.2s; outline: none;
-  resize: none; min-height: 90px;
-  display: block; margin-bottom: 2rem;
+  resize: none; min-height: 100px;
+  display: block; margin-bottom: 1.5rem;
 }
-.form-textarea::placeholder { color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
-.form-textarea:focus { border-bottom-color: var(--teal); }
+.form-textarea::placeholder { color: #aaa; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+.form-textarea:focus { border-color: var(--teal); }
 .form-submit {
   background: var(--teal); color: #fff; border: none;
   padding: 13px 40px; border-radius: var(--radius);
@@ -620,7 +620,7 @@ body {
   .hero { min-height: 75vh; }
   .section { padding: 3.5rem 1.25rem; }
   .consult-section { padding: 4rem 1.25rem; }
-  .module-grid, .visa-grid, .values-grid { grid-template-columns: 1fr; }
+  .module-grid, .visa-grid, .values-grid, .who-grid { grid-template-columns: 1fr !important; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .team-card { gap: 1.5rem; }
   .topbar { display: none; }
