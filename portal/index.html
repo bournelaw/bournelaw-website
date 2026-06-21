@@ -42,6 +42,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .matter-service{font-size:12px;color:#555;margin-bottom:6px}
 .status-badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
 .status-pending{background:#fff3cd;color:#856404}
+.status-awaiting{background:#ffe5cc;color:#7c3d00}
 .status-released{background:#d1e7dd;color:#0a3622}
 .no-matters{padding:40px;text-align:center;color:#888;font-size:14px}
 /* DETAIL PANEL */
@@ -206,7 +207,9 @@ function renderList() {
     var d = new Date(m.created_at).toLocaleDateString('en-AU', {day:'numeric',month:'short',year:'numeric'});
     var badge = m.status === 'released'
       ? '<span class="status-badge status-released">Released</span>'
-      : '<span class="status-badge status-pending">Pending review</span>';
+      : m.status === 'awaiting_payment'
+        ? '<span class="status-badge status-awaiting">Payment requested</span>'
+        : '<span class="status-badge status-pending">Pending review</span>';
     html += '<div class="matter-item" id="mi-'+m.id+'" onclick="openMatter(\''+m.id+'\')">'
       + '<div class="matter-meta"><span class="matter-name">'+escHtml(m.client_name||'Unknown')+'</span><span class="matter-date">'+d+'</span></div>'
       + '<div class="matter-service">'+escHtml(m.service_label||m.service)+'</div>'
@@ -245,24 +248,41 @@ function renderDetail(m) {
     });
   }
 
-  var releasedNote = released
-    ? '<div class="release-success" style="display:block">Document released to '+escHtml(m.client_email||'client')+' on '+new Date(m.released_at).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})+'.</div>'
-    : '';
+  var isAwaiting = m.status === 'awaiting_payment';
+
+  var statusNote = released
+    ? '<div class="release-success" style="display:block">Document released to '+escHtml(m.client_email||'client')+' on '+new Date(m.released_at).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})+(m.fee_amount ? ' &nbsp;·&nbsp; $'+parseFloat(m.fee_amount).toFixed(2)+' AUD' : '')+'.</div>'
+    : isAwaiting
+      ? '<div style="background:#fff3e0;border:1px solid #ffe0b2;border-radius:8px;padding:14px 18px;font-size:14px;color:#7c3d00;margin-bottom:16px">⏳ <strong>Payment requested.</strong> Client has been emailed a payment link'+(m.fee_amount ? ' for $'+parseFloat(m.fee_amount).toFixed(2)+' AUD' : '')+'. Document will be delivered automatically upon payment.'+(m.payment_url ? ' &nbsp;<a href="'+escHtml(m.payment_url)+'" target="_blank" style="color:#7c3d00">View payment link →</a>' : '')+'</div>'
+      : '';
+
+  var actionButtons = '';
+  if (released) {
+    actionButtons = '<button class="btn btn-outline" disabled>Released</button>';
+  } else if (isAwaiting) {
+    actionButtons = '<button class="btn btn-outline" id="resend-btn" onclick="resendPaymentLink(\''+m.id+'\')">Resend payment link</button>';
+  } else {
+    actionButtons = '<div style="display:flex;align-items:center;gap:10px">'
+      + '<div style="display:flex;align-items:center;gap:6px;background:#f0f2f7;border:1px solid #dde;border-radius:8px;padding:6px 12px">'
+      +   '<span style="font-size:13px;color:#555;font-weight:500">$</span>'
+      +   '<input type="number" id="fee-input" placeholder="Fee (AUD)" min="1" step="0.01" style="width:120px;border:none;background:transparent;font-size:14px;outline:none;color:#1a1a2e">'
+      + '</div>'
+      + '<button class="btn btn-success" id="release-btn" onclick="releaseMatter(\''+m.id+'\')">Approve &amp; send payment request →</button>'
+      + '</div>';
+  }
 
   var html = '<div class="detail-inner">'
     + '<div class="detail-header">'
     +   '<div><div class="detail-title">'+escHtml(m.service_label||m.service)+'</div>'
     +   '<div class="detail-sub">'+escHtml(m.client_name||'')+(m.client_email ? ' &nbsp;·&nbsp; '+escHtml(m.client_email) : '')+'&nbsp;·&nbsp; Received '+d+'</div></div>'
-    +   '<div class="action-btns">'
-    +     (released ? '' : '<button class="btn btn-success" id="release-btn" onclick="releaseMatter(\''+m.id+'\')">Approve &amp; release to client</button>')
-    +   '</div>'
+    +   '<div class="action-btns">'+actionButtons+'</div>'
     + '</div>'
-    + releasedNote
+    + statusNote
     + '<div class="section-card"><h3>Client submission data</h3>'
     +   '<table class="data-table">'+dataRows+'</table>'
     + '</div>'
-    + '<div class="section-card"><h3>Solicitor notes (sent to client with document)</h3>'
-    +   '<textarea class="notes-area" id="sol-notes" placeholder="Add any notes, instructions or caveats to include with the released document...">'+(escHtml(m.solicitor_notes||''))+'</textarea>'
+    + '<div class="section-card"><h3>Solicitor notes (included with document on delivery)</h3>'
+    +   '<textarea class="notes-area" id="sol-notes" placeholder="Add any notes, instructions or caveats to send to the client with their document..." '+(released||isAwaiting?'readonly':'')+' style="'+(released||isAwaiting?'background:#f7f8fc;color:#888;':'')+('">')+(escHtml(m.solicitor_notes||''))+'</textarea>'
     + '</div>'
     + '<div class="section-card"><h3>Draft document preview</h3>'
     +   '<div class="doc-preview"><iframe id="doc-iframe" srcdoc="'+escAttr(m.draft_html||'<p>No document generated.</p>')+'"></iframe></div>'
@@ -276,27 +296,53 @@ function renderDetail(m) {
 async function releaseMatter(id) {
   var btn = document.getElementById('release-btn');
   var notes = (document.getElementById('sol-notes') || {}).value || '';
-  btn.disabled = true; btn.textContent = 'Sending to client...';
+  var feeInput = document.getElementById('fee-input');
+  var feeAmount = feeInput ? feeInput.value.trim() : '';
+  if (!feeAmount || isNaN(parseFloat(feeAmount)) || parseFloat(feeAmount) <= 0) {
+    document.getElementById('release-result').innerHTML = '<div style="color:#c0392b;padding:12px;font-size:13px">Please enter a fee amount before approving.</div>';
+    if (feeInput) feeInput.focus();
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Sending payment request...';
   try {
     var r = await fetch('/api/release', {
       method:'POST',
       headers:{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json'},
-      body: JSON.stringify({ id: id, notes: notes })
+      body: JSON.stringify({ id: id, notes: notes, fee_amount: parseFloat(feeAmount) })
     });
     var result = await r.json();
     if (result.success) {
-      document.getElementById('release-result').innerHTML = '<div class="release-success" style="display:block;margin-top:0">Document sent to client successfully.</div>';
-      btn.textContent = 'Released';
+      document.getElementById('release-result').innerHTML = '<div class="release-success" style="display:block;margin-top:0">Payment request sent to client for $'+parseFloat(feeAmount).toFixed(2)+' AUD. Document will be delivered automatically when payment is received.</div>';
       loadMatters();
       setTimeout(function(){ openMatter(id); }, 800);
     } else {
-      btn.disabled = false; btn.textContent = 'Approve & release to client';
+      btn.disabled = false; btn.textContent = 'Approve & send payment request →';
       document.getElementById('release-result').innerHTML = '<div style="color:#c0392b;padding:12px;font-size:13px">Error: '+(result.error||'Unknown error')+'</div>';
     }
   } catch(e) {
-    btn.disabled = false; btn.textContent = 'Approve & release to client';
+    btn.disabled = false; btn.textContent = 'Approve & send payment request →';
     document.getElementById('release-result').innerHTML = '<div style="color:#c0392b;padding:12px;font-size:13px">Network error. Please try again.</div>';
   }
+}
+
+async function resendPaymentLink(id) {
+  var btn = document.getElementById('resend-btn');
+  btn.disabled = true; btn.textContent = 'Resending...';
+  // Fetch the stored payment URL and open it, or re-trigger the release endpoint
+  try {
+    var r = await fetch('/api/submissions?id='+id, { headers:{'Authorization':'Bearer '+TOKEN} });
+    var m = await r.json();
+    if (m.payment_url) {
+      // Open payment link in new tab so Dimitri can copy/share it manually
+      window.open(m.payment_url, '_blank');
+      document.getElementById('release-result').innerHTML = '<div class="release-success" style="display:block;margin-top:0">Payment link opened. You can copy and send it to the client directly.</div>';
+    } else {
+      document.getElementById('release-result').innerHTML = '<div style="color:#c0392b;padding:12px;font-size:13px">No payment link found. Please re-approve this matter.</div>';
+    }
+  } catch(e) {
+    document.getElementById('release-result').innerHTML = '<div style="color:#c0392b;padding:12px;font-size:13px">Error fetching payment link.</div>';
+  }
+  btn.disabled = false; btn.textContent = 'Resend payment link';
 }
 
 function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
