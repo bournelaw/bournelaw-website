@@ -354,18 +354,38 @@ function generateConsultation(d) {
   return wrap('Consultation Booking', body);
 }
 
+function generateCharacterReference(d) {
+  const body = `
+    <h1>CHARACTER REFERENCE LETTER</h1>
+    <p style="color:#555;font-size:12px;margin-bottom:24px">Reference: REF-${Date.now().toString().slice(-6)} &nbsp;|&nbsp; ${TODAY()}</p>
+    <p><strong>To Whom It May Concern${d.recipient ? ' / ' + d.recipient : ''},</strong></p>
+    <p>I, Dimitri Bourne, am a solicitor of the Supreme Court of Queensland (LPN 5511816) and the principal of Bourne Law. I write this reference in relation to <strong>${d.full_name || '[CLIENT NAME]'}</strong>.</p>
+    <p>I have known ${d.full_name || '[CLIENT NAME]'} in the capacity of ${d.relationship || 'solicitor/migration agent'} since ${d.known_since || '[YEAR]'}.</p>
+    <h2>Character Assessment</h2>
+    <div class="highlight">${(d.character_description || '[Character description to be completed by Dimitri Bourne]').replace(/\n/g,'<br>')}</div>
+    ${d.purpose ? `<h2>Purpose of Reference</h2><div class="highlight">${d.purpose.replace(/\n/g,'<br>')}</div>` : ''}
+    <p>I make this reference on the basis of my personal and professional knowledge of ${d.full_name || '[CLIENT NAME]'} and am happy to be contacted if further information is required.</p>
+    <div class="sig-block">
+      <p>Yours faithfully,</p>
+      <div class="sig-line"></div>
+      <p><strong>Dimitri Bourne</strong><br>Solicitor &amp; Migration Agent<br>Bourne Law &nbsp;|&nbsp; LPN 5511816<br>${TODAY()}</p>
+    </div>`;
+  return wrap('Character Reference Letter', body);
+}
+
 function generateDocument(service, data) {
   switch (service) {
-    case 'demand':            return generateDemand(data);
-    case 'will':              return generateWill(data);
-    case 'eligibility':       return generateEligibility(data);
-    case 'stat-dec':          return generateStatDec(data);
-    case 'contract-review':   return generateContractReview(data);
-    case 'prenup':            return generatePrenup(data);
-    case 'separation':        return generateSeparation(data);
+    case 'demand':              return generateDemand(data);
+    case 'will':                return generateWill(data);
+    case 'eligibility':         return generateEligibility(data);
+    case 'stat-dec':            return generateStatDec(data);
+    case 'contract-review':     return generateContractReview(data);
+    case 'prenup':              return generatePrenup(data);
+    case 'separation':          return generateSeparation(data);
     case 'employment-contract': return generateEmploymentContract(data);
-    case 'abn':               return generateABN(data);
-    case 'consultation':      return generateConsultation(data);
+    case 'abn':                 return generateABN(data);
+    case 'consultation':        return generateConsultation(data);
+    case 'character-reference': return generateCharacterReference(data);
     default:
       return wrap('Document', `<h1>${service}</h1><pre style="font-size:12px">${JSON.stringify(data, null, 2)}</pre>`);
   }
