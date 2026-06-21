@@ -638,7 +638,7 @@ window.addEventListener('load', function() {
   cardEl = elements.create('card', {
     style: {
       base: {
-        fontFamily: ''Helvetica Neue', Arial, sans-serif',
+        fontFamily: "'Helvetica Neue', Arial, sans-serif",
         fontSize: '14px',
         color: '#2d2d2d',
         '::placeholder': { color: '#aaa' }
@@ -665,7 +665,7 @@ window.addEventListener('load', function() {
       if (!name) { alert('Please enter your name'); return; }
       btn.disabled = true; btn.textContent = 'Processing...';
       try {
-        var r = await fetch('/api/intake', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount,name,invoice:inv})});
+        var r = await fetch('/api/create-payment-intent', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount,name,invoice:inv})});
         var d = await r.json();
         if (!d.clientSecret) throw new Error('No client secret');
         var result = await stripe.confirmCardPayment(d.clientSecret, {payment_method:{card:cardEl,billing_details:{name}}});
@@ -835,31 +835,174 @@ function closeQE() {
 }
 
 // ── MODULE MODAL ─────────────────────────────────
-var moduleData = {
-  consultation: {title:'Book a Consultation',body:'<p>Schedule a 60-minute session with Dimitri Bourne. You can discuss any immigration or legal matter and receive clear, written advice.</p><p style="margin-top:1rem"><strong>What to bring:</strong> Any relevant documents, previous correspondence, or visa paperwork.</p>'},
-  eligibility: {title:'Visa Eligibility Assessment',body:'<p>Not sure which visa is right for you? Complete our eligibility questionnaire and we will provide a written assessment of your options and recommended pathways.</p>'},
-  will: {title:'Will &amp; Testament',body:'<p>A professionally drafted will that clearly expresses your wishes. Includes guidance on executors, beneficiaries and specific bequests. Enduring Power of Attorney available as an add-on.</p>'},
-  demand: {title:'Letter of Demand',body:'<p>If you are owed money, a formal solicitor-signed letter of demand is often the fastest way to recover it. We draft, sign and send it on Bourne Law letterhead, same business day.</p><p style="margin-top:1rem"><b>What we need:</b> The debtor's name and address, amount owed, and a brief description of what the debt relates to.</p>'},
-  statdec: {title:'Statutory Declaration',body:'<p>We draft your statutory declaration to the correct legal standard, then review and witness it. Suitable for any purpose &mdash; immigration, legal, financial or personal.</p>'},
-  charref: {title:'Character Reference Letter',body:'<p>A professionally drafted character reference letter on Bourne Law letterhead. Tailored for court, visa, or employment purposes. We gather the necessary details and turn it around within one business day.</p>'},
-  bfa: {title:'Binding Financial Agreement',body:'<p>A Binding Financial Agreement (prenuptial or during marriage) protects your assets with a legally enforceable agreement. Both parties must obtain independent legal advice. We handle your side of the process.</p>'},
-  contract: {title:'Contract Review',body:'<p>Upload your contract and we will provide a written summary of the key terms, risks, and our recommended amendments before you sign. Suitable for employment contracts, commercial agreements, or leases.</p>'},
+var _mf = {
+  consultation: {
+    t: 'Book a Consultation',
+    d: '60-minute session with Dimitri Bourne &mdash; any immigration or legal topic. We will contact you to confirm the time.',
+    f: '<div class="form-group"><label>Your name *</label><input name="full_name" type="text" placeholder="Full name" required /></div>' +
+       '<div class="form-group"><label>Email *</label><input name="email" type="email" placeholder="your@email.com" required /></div>' +
+       '<div class="form-group"><label>Phone</label><input name="phone" type="tel" placeholder="+61 4xx xxx xxx" /></div>' +
+       '<div class="form-group"><label>Topic *</label><select name="consult_type" required><option value="">Select a topic...</option><option>Immigration / visa matter</option><option>Property conveyancing</option><option>Civil litigation / dispute</option><option>Employment law</option><option>Family law</option><option>Wills and estates</option><option>Criminal or traffic law</option><option>General commercial law</option><option>Not sure / general advice</option></select></div>' +
+       '<div class="form-group"><label>Preferred format *</label><select name="consult_format" required><option value="">Select...</option><option>Video call (Zoom/Teams)</option><option>Phone call</option><option>In person - Gold Coast</option></select></div>' +
+       '<div class="form-group"><label>Preferred date</label><input name="preferred_date" type="date" /></div>' +
+       '<div class="form-group"><label>Preferred time</label><select name="preferred_time"><option value="">Select...</option><option>Morning 9am-12pm</option><option>Afternoon 12pm-3pm</option><option>Late afternoon 3pm-5pm</option></select></div>' +
+       '<div class="form-group"><label>Brief summary of your situation</label><textarea name="summary" rows="3" placeholder="A few sentences is fine - helps Dimitri prepare for your session."></textarea></div>'
+  },
+  eligibility: {
+    t: 'Visa Eligibility Assessment',
+    d: 'Tell us about your background and we will identify the best visa pathways for you in a written report.',
+    f: '<div class="form-group"><label>Full name *</label><input name="full_name" type="text" required /></div>' +
+       '<div class="form-group"><label>Email *</label><input name="email" type="email" required /></div>' +
+       '<div class="form-group"><label>Phone</label><input name="phone" type="tel" /></div>' +
+       '<div class="form-group"><label>Nationality (passport country) *</label><input name="nationality" type="text" placeholder="Country of passport" required /></div>' +
+       '<div class="form-group"><label>Date of birth *</label><input name="dob" type="date" required /></div>' +
+       '<div class="form-group"><label>Occupation *</label><input name="occupation" type="text" placeholder="Current job title or occupation" required /></div>' +
+       '<div class="form-group"><label>Highest qualification *</label><select name="qualifications" required><option value="">Select...</option><option>No formal qualifications</option><option>Certificate I-IV</option><option>Diploma</option><option>Bachelor degree</option><option>Masters degree</option><option>PhD / Doctorate</option></select></div>' +
+       '<div class="form-group"><label>English proficiency *</label><select name="english" required><option value="">Select...</option><option>Native / bilingual</option><option>Proficient (IELTS 7+)</option><option>Competent (IELTS 6)</option><option>Functional (IELTS 5)</option><option>Limited</option></select></div>' +
+       '<div class="form-group"><label>Skilled work experience *</label><select name="work_experience" required><option value="">Select...</option><option>Less than 1 year</option><option>1-3 years</option><option>3-5 years</option><option>5-8 years</option><option>8+ years</option></select></div>' +
+       '<div class="form-group"><label>Australian work experience</label><select name="aus_experience"><option value="">Select...</option><option>None</option><option>Less than 1 year</option><option>1-5 years</option><option>5+ years</option></select></div>' +
+       '<div class="form-group"><label>Australian partner or spouse</label><select name="partner"><option value="">Select...</option><option>No</option><option>Yes - Australian citizen</option><option>Yes - Australian permanent resident</option></select></div>' +
+       '<div class="form-group"><label>Employer willing to sponsor you</label><select name="sponsor"><option value="">Select...</option><option>No</option><option>Yes</option><option>Possibly</option></select></div>' +
+       '<div class="form-group"><label>Current visa status in Australia</label><input name="current_visa" type="text" placeholder="e.g. Student visa, Visitor visa, Not in Australia" /></div>' +
+       '<div class="form-group"><label>Any previous visa refusals or cancellations</label><select name="previous_refusal"><option value="">Select...</option><option>No</option><option>Yes</option></select></div>'
+  },
+  will: {
+    t: 'Will &amp; Testament',
+    d: 'Provide your instructions below. Dimitri will draft your will and contact you to arrange a signing appointment.',
+    f: '<div class="form-group"><label>Full legal name *</label><input name="full_name" type="text" placeholder="As it appears on your ID or passport" required /></div>' +
+       '<div class="form-group"><label>Email *</label><input name="email" type="email" required /></div>' +
+       '<div class="form-group"><label>Phone</label><input name="phone" type="tel" /></div>' +
+       '<div class="form-group"><label>Date of birth *</label><input name="dob" type="date" required /></div>' +
+       '<div class="form-group"><label>Residential address *</label><input name="address" type="text" placeholder="Full address" required /></div>' +
+       '<div class="form-group"><label>Type of will *</label><select name="couple" required><option value="">Select...</option><option>Single will</option><option>Couples will (mirror wills)</option></select></div>' +
+       '<div class="form-group"><label>Executor - full name *</label><input name="executor_name" type="text" placeholder="The person responsible for carrying out your will" required /></div>' +
+       '<div class="form-group"><label>Executor - relationship to you *</label><input name="executor_relation" type="text" placeholder="e.g. Spouse, sibling, close friend" required /></div>' +
+       '<div class="form-group"><label>Beneficiaries *</label><textarea name="beneficiaries" rows="3" placeholder="Who should inherit and in what proportions? e.g. 100% to Jane Smith (spouse); or 50% each to John and Sarah Smith (children)" required></textarea></div>' +
+       '<div class="form-group"><label>Major assets to include</label><textarea name="assets" rows="2" placeholder="e.g. Family home at [address], superannuation, bank accounts, shares, business interests"></textarea></div>' +
+       '<div class="form-group"><label>Special wishes or instructions</label><textarea name="special_wishes" rows="2" placeholder="Optional - specific bequests, funeral wishes, guardian for children, etc."></textarea></div>'
+  },
+  demand: {
+    t: 'Letter of Demand',
+    d: 'Owed money? A solicitor-signed letter of demand on firm letterhead. Same business day turnaround.',
+    f: '<div class="form-group"><label>Your full name *</label><input name="your_name" type="text" required /></div>' +
+       '<div class="form-group"><label>Your email *</label><input name="email" type="email" required /></div>' +
+       '<div class="form-group"><label>Your phone</label><input name="phone" type="tel" /></div>' +
+       '<div class="form-group"><label>Debtor - full name or company *</label><input name="debtor_name" type="text" placeholder="Full legal name of the person or company who owes you money" required /></div>' +
+       '<div class="form-group"><label>Debtor - address for service *</label><input name="debtor_address" type="text" placeholder="Full postal address" required /></div>' +
+       '<div class="form-group"><label>Amount owed (AUD) *</label><input name="amount_owed" type="number" min="1" step="0.01" placeholder="0.00" required /></div>' +
+       '<div class="form-group"><label>What is the debt for? *</label><textarea name="debt_reason" rows="2" placeholder="e.g. Unpaid invoice for services rendered on [date], loan made on [date] not repaid, security deposit not returned" required></textarea></div>' +
+       '<div class="form-group"><label>Demand period *</label><select name="deadline" required><option value="">Select...</option><option>14 days (standard)</option><option>7 days (urgent)</option><option>21 days</option><option>28 days</option></select></div>' +
+       '<div class="form-group"><label>Previous contact attempts</label><input name="previous_contact" type="text" placeholder="Optional - e.g. Email on 5 June, phone call on 12 June" /></div>'
+  },
+  statdec: {
+    t: 'Statutory Declaration',
+    d: 'We draft your statutory declaration to the correct legal standard, then review and witness it. Same or next-day delivery.',
+    f: '<div class="form-group"><label>Your full legal name *</label><input name="full_name" type="text" required /></div>' +
+       '<div class="form-group"><label>Email *</label><input name="email" type="email" required /></div>' +
+       '<div class="form-group"><label>Phone</label><input name="phone" type="tel" /></div>' +
+       '<div class="form-group"><label>Declaration type *</label><select name="form_type" required><option value="">Select...</option><option>Commonwealth Statutory Declaration</option><option>Queensland Statutory Declaration</option></select></div>' +
+       '<div class="form-group"><label>What do you need to declare? *</label><textarea name="declaration_content" rows="4" placeholder="Write in first person - e.g. I declare that I have resided at [address] since [date] and that... Include as much detail as possible." required></textarea></div>' +
+       '<div class="form-group"><label>Supporting documents to reference</label><input name="supporting_docs" type="text" placeholder="Optional - e.g. Lease agreement dated [date], birth certificate, bank statements" /></div>'
+  },
+  charref: {
+    t: 'Character Reference Letter',
+    d: 'A professionally drafted character reference on Bourne Law letterhead. Next-day turnaround.',
+    f: '<div class="form-group"><label>Your full name (subject of the reference) *</label><input name="full_name" type="text" required /></div>' +
+       '<div class="form-group"><label>Your email *</label><input name="email" type="email" required /></div>' +
+       '<div class="form-group"><label>Your phone</label><input name="phone" type="tel" /></div>' +
+       '<div class="form-group"><label>Purpose of the reference *</label><select name="purpose" required><option value="">Select...</option><option>Court proceedings</option><option>Visa application</option><option>Employment</option><option>Character assessment</option><option>Other</option></select></div>' +
+       '<div class="form-group"><label>Addressed to</label><input name="recipient" type="text" placeholder="Optional - e.g. The Presiding Magistrate, Department of Home Affairs" /></div>' +
+       '<div class="form-group"><label>How long has Bourne Law known you?</label><input name="known_since" type="text" placeholder="e.g. 3 years, since 2022" /></div>' +
+       '<div class="form-group"><label>In what capacity are you known to us?</label><input name="relationship" type="text" placeholder="e.g. Client since 2021 - immigration matter" /></div>' +
+       '<div class="form-group"><label>Additional context</label><textarea name="notes" rows="2" placeholder="Any specific matters, qualities or circumstances you would like referenced"></textarea></div>'
+  },
+  bfa: {
+    t: 'Binding Financial Agreement',
+    d: 'A legally enforceable BFA protecting your assets before or during marriage. Both parties require independent legal advice &mdash; we act for your side.',
+    f: '<div class="form-group"><label>Your full name *</label><input name="your_name" type="text" required /></div>' +
+       '<div class="form-group"><label>Your email *</label><input name="email" type="email" required /></div>' +
+       '<div class="form-group"><label>Your phone</label><input name="phone" type="tel" /></div>' +
+       '<div class="form-group"><label>Your date of birth *</label><input name="your_dob" type="date" required /></div>' +
+       '<div class="form-group"><label>Partner full name *</label><input name="partner_name" type="text" required /></div>' +
+       '<div class="form-group"><label>Partner date of birth</label><input name="partner_dob" type="date" /></div>' +
+       '<div class="form-group"><label>Planned or actual marriage date</label><input name="wedding_date" type="date" /></div>' +
+       '<div class="form-group"><label>Your assets *</label><textarea name="your_assets" rows="2" placeholder="Property, savings, superannuation, business interests, vehicles, investments, etc." required></textarea></div>' +
+       '<div class="form-group"><label>Key terms you want covered</label><textarea name="key_terms" rows="2" placeholder="What do you want the agreement to protect or address?"></textarea></div>' +
+       '<div class="form-group"><label>Additional notes</label><textarea name="comments" rows="2" placeholder="Any other information or instructions for Dimitri"></textarea></div>'
+  },
+  contract: {
+    t: 'Contract Review',
+    d: 'We provide a written risk summary and recommended amendments before you sign. Suitable for employment, commercial, lease and other agreements.',
+    f: '<div class="form-group"><label>Your full name *</label><input name="your_name" type="text" required /></div>' +
+       '<div class="form-group"><label>Your email *</label><input name="email" type="email" required /></div>' +
+       '<div class="form-group"><label>Your phone</label><input name="phone" type="tel" /></div>' +
+       '<div class="form-group"><label>Contract type *</label><select name="contract_type" required><option value="">Select...</option><option>Employment contract</option><option>Commercial services agreement</option><option>Commercial lease</option><option>Sale/purchase agreement</option><option>Partnership or shareholder agreement</option><option>Franchise agreement</option><option>Other</option></select></div>' +
+       '<div class="form-group"><label>Your role in the contract *</label><select name="your_role" required><option value="">Select...</option><option>Buyer / Employee</option><option>Seller / Employer</option><option>Service provider</option><option>Service recipient</option><option>Other</option></select></div>' +
+       '<div class="form-group"><label>Contract value</label><input name="contract_value" type="text" placeholder="e.g. $120,000 p.a., $50,000 one-off (leave blank if not applicable)" /></div>' +
+       '<div class="form-group"><label>Signing deadline</label><input name="sign_deadline" type="date" /></div>' +
+       '<div class="form-group"><label>Main concerns or questions *</label><textarea name="key_concerns" rows="3" placeholder="What worries you about this contract? What clauses or risks should we focus on?" required></textarea></div>' +
+       '<p style="font-size:12px;color:var(--text-muted);padding:10px 12px;background:#f7f8fc;border-left:3px solid var(--teal);border-radius:0 4px 4px 0;margin-top:4px"><strong>Next step:</strong> After submitting, email your contract to <a href="mailto:dimitri@bournelaw.com.au">dimitri@bournelaw.com.au</a> with your name as the subject line.</p>'
+  }
 };
+
 function openModule(id) {
-  var data = moduleData[id];
-  if (!data) return;
-  var safeTitle = data.title.replace(/'/g, "\\'");
+  var m = _mf[id];
+  if (!m) return;
   document.getElementById('modal-content').innerHTML =
-    '<div style="padding:2rem"><h2 style="font-size:1.2rem;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--dark);margin-bottom:1.25rem">' + data.title + '</h2>' +
-    '<div style="font-size:14px;color:var(--muted);line-height:1.85">' + data.body + '</div>' +
-    '<button onclick="closeModal();quickEnquire(\'' + safeTitle + '\')" style="margin-top:2rem;background:var(--teal);color:#fff;border:none;padding:13px 28px;border-radius:30px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%">Enquire about this service</button></div>';
-  document.getElementById('module-modal').style.display='flex';
-  document.body.style.overflow='hidden';
+    '<h2 style="font-size:0.85rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--dark);margin-bottom:0.4rem;padding-right:2rem">' + m.t + '</h2>' +
+    '<p style="font-size:13px;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.7">' + m.d + '</p>' +
+    '<div id="mf-status"></div>' +
+    '<form id="mf-form">' + m.f +
+    '<button type="submit" id="mf-btn" style="width:100%;margin-top:1rem;background:var(--teal);color:#fff;border:none;padding:13px;border-radius:30px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background=\'#2a9d8a\'" onmouseout="this.style.background=\'var(--teal)\'">Submit request &#8594;</button>' +
+    '<p style="font-size:11px;color:var(--text-muted);text-align:center;margin-top:10px">We respond within one business day. No obligation.</p>' +
+    '</form>';
+  var frm = document.getElementById('mf-form');
+  if (frm) frm.addEventListener('submit', function(e) { _mfSubmit(e, id, m.t); });
+  document.getElementById('module-modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
+
+async function _mfSubmit(e, service, title) {
+  e.preventDefault();
+  var btn = document.getElementById('mf-btn');
+  var statusEl = document.getElementById('mf-status');
+  var form = document.getElementById('mf-form');
+  btn.disabled = true; btn.textContent = 'Submitting...';
+  var svcMap = { statdec: 'stat-dec', charref: 'character-reference', bfa: 'prenup', contract: 'contract-review' };
+  var data = { service: svcMap[service] || service };
+  Array.from(form.elements).forEach(function(el) { if (el.name && el.value) data[el.name] = el.value; });
+  var ok = false;
+  try {
+    var r = await fetch('/api/intake', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    if (r.ok) ok = true;
+  } catch(e1) {}
+  if (!ok) {
+    try {
+      var fd = new FormData();
+      Object.keys(data).forEach(function(k) { fd.append(k, data[k]); });
+      fd.append('_subject', 'New matter - ' + title.replace(/&amp;/g,'&').replace(/&mdash;/g,'-'));
+      var r2 = await fetch('https://formspree.io/f/xlgyrdzp', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+      if (r2.ok) ok = true;
+    } catch(e2) {}
+  }
+  if (ok) {
+    form.style.display = 'none';
+    statusEl.innerHTML = '<div style="text-align:center;padding:2rem 0">' +
+      '<div style="font-size:40px;color:var(--teal);margin-bottom:0.75rem">&#10003;</div>' +
+      '<div style="font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--dark)">Request Received</div>' +
+      '<p style="font-size:13px;color:var(--text-muted);margin-top:8px;line-height:1.7">Dimitri will be in touch within one business day.</p>' +
+      '<button onclick="closeModal()" style="margin-top:1.5rem;background:var(--teal);color:#fff;border:none;padding:11px 28px;border-radius:30px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer">Close</button></div>';
+  } else {
+    btn.disabled = false; btn.textContent = 'Submit request';
+    statusEl.innerHTML = '<p style="color:#c0392b;font-size:12px;margin-bottom:12px">Something went wrong. Please email <a href="mailto:dimitri@bournelaw.com.au">dimitri@bournelaw.com.au</a> directly.</p>';
+  }
+}
+
 function closeModal() {
-  document.getElementById('module-modal').style.display='none';
-  document.body.style.overflow='';
+  document.getElementById('module-modal').style.display = 'none';
+  document.body.style.overflow = '';
 }
+
 
 // ── CONTACT FORM ─────────────────────────────────
 var contactForm = document.getElementById('contact-form');
@@ -881,5 +1024,3 @@ var ham = document.getElementById('hamburger');
 var mob = document.getElementById('mobile-menu');
 if (ham && mob) { ham.addEventListener('click', function(){ mob.classList.toggle('open'); }); }
 </script>
-</body>
-</html>
