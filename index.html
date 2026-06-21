@@ -1056,15 +1056,20 @@ if (searchInput) {
 }
 
 // ── QUICK ENQUIRY MODAL ─────────────────────────
+var _qeOrigHTML = null;
 function quickEnquire(service) {
+  var bodyEl = document.getElementById('qe-body');
+  // Store original form HTML on first call
+  if (!_qeOrigHTML) _qeOrigHTML = bodyEl.innerHTML;
+  // Restore form HTML (in case success message replaced it)
+  bodyEl.innerHTML = _qeOrigHTML;
   document.getElementById('qe-service-name').textContent = 'Enquiry about:';
   document.getElementById('qe-title').textContent = service;
   document.getElementById('qe-service-hidden').value = service;
-  document.getElementById('qe-body').innerHTML = document.getElementById('qe-body').innerHTML; // reset
   var modal = document.getElementById('qe-modal');
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  // Re-bind form (since innerHTML was reset)
+  setTimeout(function(){ document.getElementById('qe-name').focus(); }, 50);
   bindQEForm(service);
 }
 
