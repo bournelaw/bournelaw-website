@@ -17,6 +17,7 @@ const SERVICE_LABELS = {
   'stat-dec': 'Statutory Declaration',
   'contract-review': 'Commercial Contract Review',
   consultation: 'Initial Consultation Booking',
+  'character-reference': 'Character Reference Letter',
 };
 
 module.exports = async (req, res) => {
