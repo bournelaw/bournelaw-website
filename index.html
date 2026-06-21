@@ -6,6 +6,7 @@
   <title>Bourne Law &mdash; Immigration &amp; Legal Services, Gold Coast</title>
   <meta name="description" content="Gold Coast law firm. Immigration visas, conveyancing, litigation, employment law, wills and estates, business law. LPN 5511816." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="favicon.svg" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -48,7 +49,7 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=70&auto=format');background-size:cover;background-position:center 60%;filter:grayscale(40%) brightness(0.75)"></div>
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="section-ornament" style="margin-bottom:1.1rem"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
@@ -58,14 +59,15 @@
     <p class="hero-sub">Immigration visas, conveyancing, litigation, employment law and more &mdash; handled with clarity and full end-to-end support.</p>
 
     <div class="hero-search-wrap">
-      <div class="hero-search-box">
-        <span class="hero-search-icon">&#128269;</span>
+      <div class="hero-search-box" style="background:rgba(255,255,255,0.96);border:none;border-radius:4px;box-shadow:0 8px 32px rgba(0,0,0,0.28)">
+        <span class="hero-search-icon" style="color:#333;opacity:0.5">&#128269;</span>
         <input type="text" class="hero-search-input" id="hero-search"
           placeholder="What do you need? e.g. partner visa, will, letter of demand..."
-          autocomplete="off" />
-        <button class="hero-search-btn" id="hero-search-btn">Find my service</button>
+          autocomplete="off"
+          style="color:#1c1c1c;font-size:14px" />
+        <button class="hero-search-btn" id="hero-search-btn" style="background:var(--teal);padding:11px 22px;font-size:10px;letter-spacing:1.5px">Find my service</button>
       </div>
-      <div class="hero-search-hint">Type a few words and we&rsquo;ll point you to exactly the right service</div>
+      <div class="hero-search-hint" style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:8px;text-align:center;letter-spacing:0.5px">&#128269; Type a few words — we&rsquo;ll take you straight to the right service</div>
       <div class="search-suggestions" id="search-suggestions"></div>
     </div>
 
@@ -249,8 +251,8 @@
       <h2 class="section-title">Legal Products</h2>
       <p class="section-sub">Get a professional legal document prepared, reviewed and delivered without a full engagement. Fast turnaround, transparent process.</p>
     </div>
-    <div class="module-grid">
-      <div class="module-card module-card--featured">
+    <div class="module-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;background:transparent;border:none">
+      <div class="module-card module-card--featured" style="border:1px solid #e8e8e8;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s">
         <div class="module-top">
           <div class="module-icon module-icon--blue">&#128197;</div>
           <div class="module-badge module-badge--blue">Most popular</div>
@@ -265,7 +267,7 @@
         </ul>
         <button class="module-btn module-btn--navy" onclick="openModule('consultation')">Book now</button>
       </div>
-      <div class="module-card">
+      <div class="module-card" style="border:1px solid #e8e8e8;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s">
         <div class="module-top">
           <div class="module-icon">&#128706;</div>
           <div class="module-badge">Immigration</div>
@@ -280,7 +282,7 @@
         </ul>
         <button class="module-btn" onclick="openModule('eligibility')">Get assessed</button>
       </div>
-      <div class="module-card">
+      <div class="module-card" style="border:1px solid #e8e8e8;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s">
         <div class="module-top">
           <div class="module-icon">&#128221;</div>
           <div class="module-badge">Wills &amp; Estates</div>
@@ -295,7 +297,7 @@
         </ul>
         <button class="module-btn" onclick="openModule('will')">Get started</button>
       </div>
-      <div class="module-card">
+      <div class="module-card" style="border:1px solid #e8e8e8;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s">
         <div class="module-top">
           <div class="module-icon">&#9889;</div>
           <div class="module-badge">Disputes</div>
@@ -310,7 +312,7 @@
         </ul>
         <button class="module-btn" onclick="openModule('demand')">Order now</button>
       </div>
-      <div class="module-card">
+      <div class="module-card" style="border:1px solid #e8e8e8;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s">
         <div class="module-top">
           <div class="module-icon">&#128196;</div>
           <div class="module-badge">Documents</div>
@@ -325,7 +327,7 @@
         </ul>
         <button class="module-btn" onclick="openModule('statdec')">Order now</button>
       </div>
-      <div class="module-card">
+      <div class="module-card" style="border:1px solid #e8e8e8;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s">
         <div class="module-top">
           <div class="module-icon">&#128336;</div>
           <div class="module-badge">Documents</div>
@@ -340,7 +342,7 @@
         </ul>
         <button class="module-btn" onclick="openModule('charref')">Order now</button>
       </div>
-      <div class="module-card">
+      <div class="module-card" style="border:1px solid #e8e8e8;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s">
         <div class="module-top">
           <div class="module-icon">&#128141;</div>
           <div class="module-badge">Family Law</div>
@@ -355,7 +357,7 @@
         </ul>
         <button class="module-btn" onclick="openModule('bfa')">Get started</button>
       </div>
-      <div class="module-card">
+      <div class="module-card" style="border:1px solid #e8e8e8;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.2s,box-shadow 0.2s">
         <div class="module-top">
           <div class="module-icon">&#128203;</div>
           <div class="module-badge">Commercial</div>
@@ -474,16 +476,16 @@
     <div class="pay-form">
       <div class="pay-step">
         <div class="pay-step-label">1. Invoice details</div>
-        <div class="form-group-std"><label>Invoice number</label><input type="text" id="invoice-num" placeholder="e.g. INV-0042" /></div>
-        <div class="form-group-std"><label>Your name</label><input type="text" id="pay-name" placeholder="Full name" /></div>
-        <div class="form-group-std" style="margin-bottom:20px"><label>Amount (AUD)</label><input type="number" id="pay-amount" placeholder="0.00" min="1" step="0.01" /></div>
+        <div class="form-group"><label>Invoice number</label><input type="text" id="invoice-num" placeholder="e.g. INV-0042" /></div>
+        <div class="form-group"><label>Your name</label><input type="text" id="pay-name" placeholder="Full name" /></div>
+        <div class="form-group" style="margin-bottom:20px"><label>Amount (AUD)</label><input type="number" id="pay-amount" placeholder="0.00" min="1" step="0.01" /></div>
       </div>
       <div class="pay-step">
         <div class="pay-step-label">2. Card details</div>
         <div class="stripe-card-element" id="card-element"></div>
         <div id="card-errors" style="color:#c0392b;font-size:12px;margin-top:6px"></div>
       </div>
-      <button id="pay-btn" class="form-submit" style="width:100%;margin-top:1.5rem">Pay securely</button>
+      <button id="pay-btn" style="width:100%;margin-top:1.5rem;background:var(--teal);color:#fff;border:none;padding:14px;border-radius:30px;font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='#2a9d8a'" onmouseout="this.style.background='var(--teal)'">Pay securely &#8594;</button>
       <div id="pay-success" style="display:none;text-align:center;padding:2rem 0">
         <div style="font-size:32px;color:var(--teal);margin-bottom:0.75rem">&#10003;</div>
         <div style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:1px;text-transform:uppercase">Payment Received</div>
@@ -503,10 +505,10 @@
     <p class="consult-sub">Request your own personal consultation with Bourne Law.</p>
     <form id="contact-form" action="https://formspree.io/f/xlgyrdzp" method="POST">
       <input type="hidden" name="_subject" value="Bourne Law Website Enquiry" />
-      <input type="text" name="name" class="form-input" placeholder="NAME" required />
-      <input type="email" name="email" class="form-input" placeholder="EMAIL" required />
-      <input type="tel" name="phone" class="form-input" placeholder="PHONE" />
-      <select name="service" class="form-input" id="service-select" style="appearance:none;-webkit-appearance:none;cursor:pointer;color:#aaa">
+      <input type="text" name="name" class="consult-field" placeholder="NAME" required />
+      <input type="email" name="email" class="consult-field" placeholder="EMAIL" required />
+      <input type="tel" name="phone" class="consult-field" placeholder="PHONE" />
+      <select name="service" class="consult-field" id="service-select" style="appearance:none;-webkit-appearance:none;cursor:pointer;color:#aaa">
         <option value="" disabled selected>SERVICE</option>
         <option style="color:#2d2d2d">Partner visa (820/801)</option>
         <option style="color:#2d2d2d">Skilled visa (189/190)</option>
@@ -527,8 +529,8 @@
         <option style="color:#2d2d2d">Initial consultation</option>
         <option style="color:#2d2d2d">Other</option>
       </select>
-      <textarea name="message" class="form-textarea" placeholder="MESSAGE" rows="4"></textarea>
-      <button type="submit" class="form-submit">Submit</button>
+      <textarea name="message" class="consult-field" placeholder="MESSAGE" rows="4"></textarea>
+      <button type="submit" class="consult-submit">Submit</button>
     </form>
   </div>
 </section>
@@ -592,10 +594,10 @@
     </div>
     <div class="qe-body" id="qe-body">
       <form id="qe-form">
-        <div class="form-group-std"><label>Your name</label><input type="text" name="name" id="qe-name" placeholder="Full name" required /></div>
-        <div class="form-group-std"><label>Email address</label><input type="email" name="email" id="qe-email" placeholder="your@email.com" required /></div>
-        <div class="form-group-std"><label>Phone (optional)</label><input type="tel" name="phone" id="qe-phone" placeholder="+61 4xx xxx xxx" /></div>
-        <div class="form-group-std"><label>Briefly describe your situation</label><textarea name="message" id="qe-message" rows="3" placeholder="A few sentences is fine..."></textarea></div>
+        <div class="form-group"><label>Your name</label><input type="text" name="name" id="qe-name" placeholder="Full name" required /></div>
+        <div class="form-group"><label>Email address</label><input type="email" name="email" id="qe-email" placeholder="your@email.com" required /></div>
+        <div class="form-group"><label>Phone (optional)</label><input type="tel" name="phone" id="qe-phone" placeholder="+61 4xx xxx xxx" /></div>
+        <div class="form-group"><label>Briefly describe your situation</label><textarea name="message" id="qe-message" rows="3" placeholder="A few sentences is fine..."></textarea></div>
         <input type="hidden" name="service" id="qe-service-hidden" />
         <button type="submit" class="qe-submit" id="qe-submit-btn">Send enquiry &rarr;</button>
         <p class="qe-note">We respond within one business day. No obligation.</p>
