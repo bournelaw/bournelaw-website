@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bourne Law &mdash; Immigration &amp; Legal Services, Gold Coast</title>
   <meta name="description" content="Gold Coast law firm. Immigration visas, conveyancing, litigation, employment law, wills and estates, business law. LPN 5511816." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f2654'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-size='12.5' font-weight='700' fill='white' text-anchor='middle'%3EBL%3C/text%3E%3C/svg%3E" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="alternate icon" href="favicon.svg" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -62,7 +62,7 @@
       <div class="hero-search-box" style="background:rgba(255,255,255,0.96);border:none;border-radius:4px;box-shadow:0 8px 32px rgba(0,0,0,0.28)">
         <span class="hero-search-icon" style="color:#333;opacity:0.5">&#128269;</span>
         <input type="text" class="hero-search-input" id="hero-search"
-          placeholder="What do you need? e.g. partner visa, will, letter of demand..."
+          placeholder="e.g. partner visa, letter of demand, will..."
           autocomplete="off"
           style="color:#1c1c1c;font-size:14px" />
         <button class="hero-search-btn" id="hero-search-btn" style="background:var(--teal);padding:11px 22px;font-size:10px;letter-spacing:1.5px">Find my service</button>
@@ -508,26 +508,38 @@
       <input type="text" name="name" class="consult-field" placeholder="NAME" required />
       <input type="email" name="email" class="consult-field" placeholder="EMAIL" required />
       <input type="tel" name="phone" class="consult-field" placeholder="PHONE" />
-      <select name="service" class="consult-field" id="service-select" style="appearance:none;-webkit-appearance:none;cursor:pointer;color:#aaa">
-        <option value="" disabled selected>SERVICE</option>
-        <option style="color:#2d2d2d">Partner visa (820/801)</option>
-        <option style="color:#2d2d2d">Skilled visa (189/190)</option>
-        <option style="color:#2d2d2d">TSS visa (482)</option>
-        <option style="color:#2d2d2d">Student visa (500)</option>
-        <option style="color:#2d2d2d">Visitor visa</option>
-        <option style="color:#2d2d2d">Business innovation (188A)</option>
-        <option style="color:#2d2d2d">Investor stream (188B)</option>
-        <option style="color:#2d2d2d">Significant investor (188C)</option>
-        <option style="color:#2d2d2d">Entrepreneur (188E)</option>
-        <option style="color:#2d2d2d">Pacific engagement (192)</option>
-        <option style="color:#2d2d2d">Property conveyancing</option>
-        <option style="color:#2d2d2d">Civil litigation</option>
-        <option style="color:#2d2d2d">Employment law</option>
-        <option style="color:#2d2d2d">Family law</option>
-        <option style="color:#2d2d2d">Wills and estates</option>
-        <option style="color:#2d2d2d">General commercial law</option>
-        <option style="color:#2d2d2d">Initial consultation</option>
-        <option style="color:#2d2d2d">Other</option>
+      <select name="service" id="service-select" style="width:100%;border:1px solid #d0d0d0;border-radius:0;padding:13px 40px 13px 15px;font-size:12px;color:#555;font-family:inherit;background:rgba(255,255,255,0.9) url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%226%22><path d=%22M0 0l5 6 5-6z%22 fill=%22%23999%22/></svg>') no-repeat right 14px center;-webkit-appearance:none;appearance:none;cursor:pointer;outline:none;letter-spacing:0.5px;margin-bottom:6px;display:block;transition:border-color 0.2s" onfocus="this.style.borderColor='#3dbfa8'" onblur="this.style.borderColor='#d0d0d0'">
+        <option value="" disabled selected style="color:#aaa">— Select a service —</option>
+        <optgroup label="Immigration">
+          <option>Partner visa (820/801)</option>
+          <option>Skilled visa (189/190)</option>
+          <option>TSS / Work visa (482)</option>
+          <option>Student visa (500)</option>
+          <option>Visitor visa</option>
+          <option>Pacific engagement (192)</option>
+        </optgroup>
+        <optgroup label="Legal Services">
+          <option>Property conveyancing</option>
+          <option>Civil litigation</option>
+          <option>Employment law</option>
+          <option>Family law</option>
+          <option>Wills and estates</option>
+          <option>Criminal or traffic law</option>
+          <option>Commercial leasing</option>
+          <option>General commercial law</option>
+        </optgroup>
+        <optgroup label="Self-Service Products">
+          <option>Initial consultation</option>
+          <option>Visa eligibility assessment</option>
+          <option>Letter of demand</option>
+          <option>Statutory declaration</option>
+          <option>Contract review</option>
+          <option>Binding Financial Agreement</option>
+          <option>Character reference letter</option>
+        </optgroup>
+        <optgroup label="Other">
+          <option>Other / Not sure</option>
+        </optgroup>
       </select>
       <textarea name="message" class="consult-field" placeholder="MESSAGE" rows="4"></textarea>
       <button type="submit" class="consult-submit">Submit</button>
@@ -618,27 +630,53 @@
 
 <script>
 // ── STRIPE ──────────────────────────────────────
-var stripe = Stripe('pk_test_51TkUflJRSvy7vrhHjr4DWgpZkAbf06NV2slkbQCVtTixFMladmNUpEDGFnEkSlkdEEJwkZedHfv0HDs4hVGCVXKs00NuUYHaBC');
-var elements = stripe.elements();
-var cardEl = elements.create('card', {style:{base:{fontFamily:'Helvetica Neue,Arial,sans-serif',fontSize:'14px',color:'#2d2d2d','::placeholder':{color:'#aaa'}}}});
-cardEl.mount('#card-element');
-cardEl.on('change', function(e){ document.getElementById('card-errors').textContent = e.error ? e.error.message : ''; });
-document.getElementById('pay-btn').addEventListener('click', async function(){
-  var btn = this;
-  var amount = Math.round(parseFloat(document.getElementById('pay-amount').value || '0') * 100);
-  var name = document.getElementById('pay-name').value;
-  var inv = document.getElementById('invoice-num').value;
-  if (!amount || amount < 100) { alert('Please enter a valid amount (minimum $1.00)'); return; }
-  if (!name) { alert('Please enter your name'); return; }
-  btn.disabled = true; btn.textContent = 'Processing...';
-  try {
-    var r = await fetch('/api/intake', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount,name,invoice:inv})});
-    var d = await r.json();
-    if (!d.clientSecret) throw new Error('No client secret');
-    var result = await stripe.confirmCardPayment(d.clientSecret, {payment_method:{card:cardEl,billing_details:{name:name}}});
-    if (result.error) { document.getElementById('card-errors').textContent = result.error.message; btn.disabled=false; btn.textContent='Pay securely'; }
-    else { document.getElementById('pay-success').style.display='block'; btn.style.display='none'; }
-  } catch(err) { document.getElementById('card-errors').textContent = 'Payment error. Please call us on 07 55 38 38 70.'; btn.disabled=false; btn.textContent='Pay securely'; }
+var stripe, cardEl;
+window.addEventListener('load', function() {
+  if (typeof Stripe === 'undefined') return;
+  stripe = Stripe('pk_test_51TkUflJRSvy7vrhHjr4DWgpZkAbf06NV2slkbQCVtTixFMladmNUpEDGFnEkSlkdEEJwkZedHfv0HDs4hVGCVXKs00NuUYHaBC');
+  var elements = stripe.elements();
+  cardEl = elements.create('card', {
+    style: {
+      base: {
+        fontFamily: ''Helvetica Neue', Arial, sans-serif',
+        fontSize: '14px',
+        color: '#2d2d2d',
+        '::placeholder': { color: '#aaa' }
+      },
+      invalid: { color: '#c0392b' }
+    },
+    hidePostalCode: true
+  });
+  var cardMount = document.getElementById('card-element');
+  if (cardMount) {
+    cardEl.mount('#card-element');
+    cardEl.on('change', function(e) {
+      document.getElementById('card-errors').textContent = e.error ? e.error.message : '';
+    });
+  }
+  var payBtn = document.getElementById('pay-btn');
+  if (payBtn) {
+    payBtn.addEventListener('click', async function() {
+      var btn = this;
+      var amount = Math.round(parseFloat(document.getElementById('pay-amount').value || '0') * 100);
+      var name = document.getElementById('pay-name').value.trim();
+      var inv = document.getElementById('invoice-num').value.trim();
+      if (!amount || amount < 100) { alert('Please enter a valid amount (minimum $1.00)'); return; }
+      if (!name) { alert('Please enter your name'); return; }
+      btn.disabled = true; btn.textContent = 'Processing...';
+      try {
+        var r = await fetch('/api/intake', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount,name,invoice:inv})});
+        var d = await r.json();
+        if (!d.clientSecret) throw new Error('No client secret');
+        var result = await stripe.confirmCardPayment(d.clientSecret, {payment_method:{card:cardEl,billing_details:{name}}});
+        if (result.error) { document.getElementById('card-errors').textContent = result.error.message; btn.disabled=false; btn.textContent='Pay securely'; }
+        else { document.getElementById('pay-success').style.display='block'; btn.style.display='none'; }
+      } catch(err) {
+        document.getElementById('card-errors').textContent = 'Payment error. Please call us on 07 55 38 38 70.';
+        btn.disabled=false; btn.textContent='Pay securely';
+      }
+    });
+  }
 });
 
 // ── SMART SEARCH ─────────────────────────────────
@@ -744,9 +782,11 @@ if (searchInput) {
   });
   document.addEventListener('click', function(e){ if(!e.target.closest('.hero-search-wrap')) suggestionsEl.classList.remove('open'); });
   document.getElementById('hero-search-btn').addEventListener('click', function() {
-    var r = searchServices(searchInput.value);
+    var q = searchInput.value.trim();
+    if (!q) { searchInput.focus(); searchInput.placeholder='Type what you need first...'; setTimeout(function(){searchInput.placeholder='e.g. partner visa, letter of demand, will...';},2500); return; }
+    var r = searchServices(q);
     if (r.length) { r[0].action(); suggestionsEl.classList.remove('open'); searchInput.value=''; }
-    else { alert('Try describing what you need, e.g. "partner visa" or "letter of demand"'); }
+    else { document.getElementById('contact').scrollIntoView({behavior:'smooth'}); suggestionsEl.classList.remove('open'); }
   });
 }
 
@@ -808,10 +848,11 @@ var moduleData = {
 function openModule(id) {
   var data = moduleData[id];
   if (!data) return;
+  var safeTitle = data.title.replace(/'/g, "\\'");
   document.getElementById('modal-content').innerHTML =
-    '<div style="padding:2rem"><h2 style="font-size:1.2rem;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--dark);margin-bottom:1.25rem">'+data.title+'</h2>'+
-    '<div style="font-size:14px;color:var(--text-muted);line-height:1.85">'+data.body+'</div>'+
-    '<button onclick="closeModal();quickEnquire(''+data.title+'')" style="margin-top:2rem;background:var(--teal);color:#fff;border:none;padding:13px 28px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%">Enquire about this service</button></div>';
+    '<div style="padding:2rem"><h2 style="font-size:1.2rem;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--dark);margin-bottom:1.25rem">' + data.title + '</h2>' +
+    '<div style="font-size:14px;color:var(--muted);line-height:1.85">' + data.body + '</div>' +
+    '<button onclick="closeModal();quickEnquire(\'' + safeTitle + '\')" style="margin-top:2rem;background:var(--teal);color:#fff;border:none;padding:13px 28px;border-radius:30px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%">Enquire about this service</button></div>';
   document.getElementById('module-modal').style.display='flex';
   document.body.style.overflow='hidden';
 }
