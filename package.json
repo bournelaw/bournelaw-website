@@ -6,6 +6,8 @@
   "dependencies": {
     "stripe": "^14.0.0",
     "@supabase/supabase-js": "^2.39.3",
-    "resend": "^2.1.0"
+    "resend": "^2.1.0",
+    "@sparticuz/chromium": "^131.0.1",
+    "puppeteer-core": "^21.6.1"
   }
 }
