@@ -884,5 +884,233 @@ if (payBtn) {
   });
 }
 </script>
+
+<!-- QUICK ENQUIRY MODAL -->
+<div id="qe-modal" style="display:none" class="qe-overlay" onclick="if(event.target===this)closeQE()">
+  <div class="qe-box">
+    <div class="qe-header">
+      <div class="qe-header-text">
+        <div class="qe-service-name" id="qe-service-name">Enquiry</div>
+        <div class="qe-title" id="qe-title">How can we help?</div>
+      </div>
+      <button class="qe-close" onclick="closeQE()">&#215;</button>
+    </div>
+    <div class="qe-body" id="qe-body">
+      <form id="qe-form">
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" name="name" id="qe-name" placeholder="Full name" required />
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" name="email" id="qe-email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Phone (optional)</label>
+          <input type="tel" name="phone" id="qe-phone" placeholder="+61 4xx xxx xxx" />
+        </div>
+        <div class="form-group">
+          <label>Briefly describe your situation</label>
+          <textarea name="message" id="qe-message" rows="3" placeholder="A few sentences is fine -- we will follow up to gather the details..."></textarea>
+        </div>
+        <input type="hidden" name="service" id="qe-service-hidden" />
+        <button type="submit" class="qe-submit" id="qe-submit-btn">Send enquiry &#8594;</button>
+        <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:10px">We respond within one business day. No obligation.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── SMART SEARCH ────────────────────────────────
+var serviceIndex = [
+  { label: 'Partner visa (820/801)', desc: 'Spouse or de facto partner', icon: '&#10084;', tag: 'Immigration', action: function(){ quickEnquire('Partner visa (820/801)'); } },
+  { label: 'Student visa (500)', desc: 'Study at an Australian institution', icon: '&#127891;', tag: 'Immigration', action: function(){ quickEnquire('Student visa (500)'); } },
+  { label: 'Significant investor visa (188C)', desc: 'AUD $5M investment stream', icon: '&#128176;', tag: 'Business migration', action: function(){ quickEnquire('Significant investor (188C)'); } },
+  { label: 'Business innovation visa (188A)', desc: 'Business owner with EOI + nomination', icon: '&#127968;', tag: 'Business migration', action: function(){ quickEnquire('Business innovation (188A)'); } },
+  { label: 'Entrepreneur visa (188E)', desc: 'AUD $200k+ funding agreement', icon: '&#128640;', tag: 'Business migration', action: function(){ quickEnquire('Entrepreneur (188E)'); } },
+  { label: 'Pacific engagement visa (192)', desc: 'PNG and Pacific nationals', icon: '&#127754;', tag: 'Immigration', action: function(){ quickEnquire('Pacific engagement (192)'); } },
+  { label: 'Skilled nominated visa (190)', desc: 'State-nominated permanent residency', icon: '&#11088;', tag: 'Immigration', action: function(){ quickEnquire('Skilled nominated (190)'); } },
+  { label: 'TSS / work visa (482)', desc: 'Employer-sponsored work visa', icon: '&#128188;', tag: 'Immigration', action: function(){ quickEnquire('TSS visa (482)'); } },
+  { label: 'Visitor / tourist visa', desc: 'Short stay for tourism or family', icon: '&#9992;', tag: 'Immigration', action: function(){ quickEnquire('Visitor visa'); } },
+  { label: 'Property conveyancing', desc: 'Buy or sell a home or business property', icon: '&#127968;', tag: 'Legal', action: function(){ quickEnquire('Property conveyancing'); } },
+  { label: 'Civil litigation', desc: 'Disputes, debt recovery, court matters', icon: '&#9878;', tag: 'Legal', action: function(){ quickEnquire('Civil litigation'); } },
+  { label: 'Employment law', desc: 'Unfair dismissal, underpayment, Fair Work', icon: '&#128188;', tag: 'Legal', action: function(){ quickEnquire('Employment law'); } },
+  { label: 'Will and estate planning', desc: 'Draft a will, power of attorney, estate admin', icon: '&#128221;', tag: 'Legal', action: function(){ openModule('will'); } },
+  { label: 'Family law / divorce', desc: 'Separation, property, parenting plans', icon: '&#128106;', tag: 'Legal', action: function(){ quickEnquire('Family law'); } },
+  { label: 'Prenuptial agreement (BFA)', desc: 'Binding Financial Agreement before marriage', icon: '&#128141;', tag: 'Legal', action: function(){ openModule('bfa'); } },
+  { label: 'Business start-up Australia', desc: 'ASIC company, ABN, structure advice', icon: '&#128640;', tag: 'Business', action: function(){ quickEnquire('Business start-up Australia'); } },
+  { label: 'Business start-up China / international', desc: 'Expand your business into Australia', icon: '&#127758;', tag: 'Business', action: function(){ quickEnquire('Business start-up international'); } },
+  { label: 'Sell or buy a business', desc: 'Business sale contracts, due diligence, FIRB', icon: '&#128200;', tag: 'Business', action: function(){ quickEnquire('Business sale or acquisition'); } },
+  { label: 'Commercial leasing', desc: 'Retail, commercial, industrial leases', icon: '&#127970;', tag: 'Legal', action: function(){ quickEnquire('Commercial leasing'); } },
+  { label: 'Criminal or traffic law', desc: 'Court representation, drink driving, bail', icon: '&#128663;', tag: 'Legal', action: function(){ quickEnquire('Criminal and traffic law'); } },
+  { label: 'Letter of demand', desc: 'Owed money? Solicitor-signed same day', icon: '&#9889;', tag: 'Self-service', action: function(){ openModule('demand'); } },
+  { label: 'Statutory declaration', desc: 'Stat dec drafted and reviewed', icon: '&#128196;', tag: 'Self-service', action: function(){ openModule('statdec'); } },
+  { label: 'Character reference letter', desc: 'Professional reference on letterhead', icon: '&#128336;', tag: 'Self-service', action: function(){ openModule('charref'); } },
+  { label: 'Visa eligibility assessment', desc: 'Find which visa suits you -- written report', icon: '&#128706;', tag: 'Self-service', action: function(){ openModule('eligibility'); } },
+  { label: 'Book a consultation', desc: '60-minute session with Dimitri, any topic', icon: '&#128197;', tag: 'Popular', action: function(){ openModule('consultation'); } },
+  { label: 'Pay an invoice', desc: 'Secure online payment for your Bourne Law bill', icon: '&#128179;', tag: 'Payment', action: function(){ document.getElementById('pay').scrollIntoView({behavior:'smooth'}); } },
+  { label: 'Mediation / dispute resolution', desc: 'Resolve disputes without going to court', icon: '&#129309;', tag: 'Legal', action: function(){ quickEnquire('Mediation and dispute resolution'); } },
+];
+
+var keywords = {
+  'partner': 0, 'spouse': 0, 'de facto': 0, 'defacto': 0, 'wife': 0, 'husband': 0, 'girlfriend': 0, 'boyfriend': 0, 'fiance': 0,
+  'student': 1, 'study': 1, 'university': 1, 'school': 1, 'college': 1, 'tafe': 1,
+  'investor': 2, '188c': 2, 'significant': 2, '$5m': 2, '5 million': 2,
+  '188a': 3, 'business innovation': 3, 'innovation': 3,
+  '188e': 4, 'entrepreneur': 4, 'startup visa': 4, 'start up visa': 4,
+  'pacific': 5, 'png': 5, 'papua': 5, 'fiji': 5, 'vanuatu': 5, '192': 5,
+  '190': 6, 'skilled': 6, 'nominated': 6, 'points': 6, 'eoI': 6,
+  '482': 7, 'work visa': 7, 'employer sponsored': 7, 'tss': 7, 'sponsored': 7,
+  'visitor': 8, 'tourist': 8, 'holiday': 8, 'visit': 8,
+  'conveyancing': 9, 'property': 9, 'buy house': 9, 'sell house': 9, 'settlement': 9, 'contract of sale': 9, 'house': 9, 'apartment': 9,
+  'litigation': 10, 'dispute': 10, 'debt': 10, 'court': 10, 'sue': 10, 'legal action': 10, 'owe': 10, 'recover': 10,
+  'employment': 11, 'unfair dismissal': 11, 'fired': 11, 'dismissed': 11, 'underpaid': 11, 'workplace': 11, 'fair work': 11, 'redundant': 11,
+  'will': 12, 'testament': 12, 'estate': 12, 'power of attorney': 12, 'poa': 12, 'executor': 12, 'beneficiary': 12,
+  'family': 13, 'divorce': 13, 'separation': 13, 'parenting': 13, 'custody': 13,
+  'prenup': 14, 'prenuptial': 14, 'bfa': 14, 'binding financial': 14, 'marriage agreement': 14,
+  'start up': 15, 'startup': 15, 'company': 15, 'asic': 15, 'abn': 15, 'register': 15, 'new business': 15,
+  'china': 16, 'chinese': 16, 'international business': 16, 'expand': 16,
+  'sell business': 17, 'buy business': 17, 'acquisition': 17, 'due diligence': 17, 'goodwill': 17,
+  'lease': 18, 'leasing': 18, 'rental': 18, 'landlord': 18, 'tenant': 18, 'commercial lease': 18,
+  'criminal': 19, 'traffic': 19, 'drink driving': 19, 'dui': 19, 'licence': 19, 'fine': 19, 'offence': 19,
+  'letter of demand': 20, 'demand letter': 20, 'money owed': 20,
+  'stat dec': 21, 'statutory': 21, 'declaration': 21,
+  'reference': 22, 'character': 22,
+  'which visa': 23, 'eligibility': 23, 'qualify': 23, 'assessment': 23, 'not sure': 23,
+  'consultation': 24, 'advice': 24, 'consult': 24, 'speak': 24, 'talk': 24, 'help': 24, 'unsure': 24,
+  'pay': 25, 'invoice': 25, 'payment': 25, 'bill': 25,
+  'mediation': 26, 'mediate': 26, 'resolve': 26,
+};
+
+function searchServices(q) {
+  q = q.toLowerCase().trim();
+  if (!q || q.length < 2) return [];
+  var hits = {};
+  // keyword matching
+  Object.keys(keywords).forEach(function(kw) {
+    if (q.indexOf(kw) !== -1 || kw.indexOf(q) !== -1) {
+      var idx = keywords[kw];
+      hits[idx] = (hits[idx] || 0) + (kw.length >= q.length ? 2 : 1);
+    }
+  });
+  // word matching against labels/desc
+  var words = q.split(/\s+/).filter(function(w){ return w.length > 2; });
+  serviceIndex.forEach(function(s, i) {
+    words.forEach(function(w) {
+      if (s.label.toLowerCase().indexOf(w) !== -1 || s.desc.toLowerCase().indexOf(w) !== -1) {
+        hits[i] = (hits[i] || 0) + 1;
+      }
+    });
+  });
+  var ranked = Object.keys(hits).map(Number).sort(function(a,b){ return hits[b]-hits[a]; });
+  return ranked.slice(0, 5).map(function(i){ return serviceIndex[i]; });
+}
+
+var searchInput = document.getElementById('hero-search');
+var suggestionsEl = document.getElementById('search-suggestions');
+var activeIdx = -1;
+
+function renderSuggestions(items) {
+  if (!items.length) { suggestionsEl.classList.remove('open'); return; }
+  suggestionsEl.innerHTML = items.map(function(s, i) {
+    return '<div class="suggestion-item" data-idx="' + i + '" onclick="selectSuggestion(' + i + ')">' +
+      '<span class="suggestion-icon">' + s.icon + '</span>' +
+      '<div><div class="suggestion-label">' + s.label + '</div>' +
+      '<div class="suggestion-desc">' + s.desc + '</div></div>' +
+      '<span class="suggestion-tag">' + s.tag + '</span>' +
+      '</div>';
+  }).join('');
+  suggestionsEl._items = items;
+  suggestionsEl.classList.add('open');
+  activeIdx = -1;
+}
+
+function selectSuggestion(i) {
+  var items = suggestionsEl._items;
+  if (!items || !items[i]) return;
+  suggestionsEl.classList.remove('open');
+  searchInput.value = '';
+  items[i].action();
+}
+
+if (searchInput) {
+  searchInput.addEventListener('input', function() {
+    renderSuggestions(searchServices(this.value));
+  });
+  searchInput.addEventListener('keydown', function(e) {
+    var items = document.querySelectorAll('.suggestion-item');
+    if (e.key === 'ArrowDown') { activeIdx = Math.min(activeIdx + 1, items.length - 1); items.forEach(function(el,i){ el.style.background = i===activeIdx ? 'var(--bg-alt)' : ''; }); e.preventDefault(); }
+    else if (e.key === 'ArrowUp') { activeIdx = Math.max(activeIdx - 1, 0); items.forEach(function(el,i){ el.style.background = i===activeIdx ? 'var(--bg-alt)' : ''; }); e.preventDefault(); }
+    else if (e.key === 'Enter') { if (activeIdx >= 0) { selectSuggestion(activeIdx); } else { var res = searchServices(this.value); if (res.length) { res[0].action(); suggestionsEl.classList.remove('open'); this.value=''; } } e.preventDefault(); }
+    else if (e.key === 'Escape') { suggestionsEl.classList.remove('open'); }
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.hero-search-wrap')) suggestionsEl.classList.remove('open');
+  });
+  document.getElementById('hero-search-btn').addEventListener('click', function() {
+    var res = searchServices(searchInput.value);
+    if (res.length) { res[0].action(); suggestionsEl.classList.remove('open'); searchInput.value=''; }
+    else { alert('Try describing what you need, e.g. "partner visa" or "letter of demand"'); }
+  });
+}
+
+// ── QUICK ENQUIRY MODAL ─────────────────────────
+function quickEnquire(service) {
+  document.getElementById('qe-service-name').textContent = 'Enquiry about:';
+  document.getElementById('qe-title').textContent = service;
+  document.getElementById('qe-service-hidden').value = service;
+  document.getElementById('qe-body').innerHTML = document.getElementById('qe-body').innerHTML; // reset
+  var modal = document.getElementById('qe-modal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  // Re-bind form (since innerHTML was reset)
+  bindQEForm(service);
+}
+
+function bindQEForm(service) {
+  var form = document.getElementById('qe-form');
+  if (!form) return;
+  form.onsubmit = async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('qe-submit-btn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    var data = new FormData();
+    data.append('service', service);
+    data.append('name', document.getElementById('qe-name').value);
+    data.append('email', document.getElementById('qe-email').value);
+    data.append('phone', document.getElementById('qe-phone').value);
+    data.append('message', document.getElementById('qe-message').value);
+    try {
+      var r = await fetch('https://formspree.io/f/xlgyrdzp', { method:'POST', body:data, headers:{'Accept':'application/json'} });
+      if (r.ok) {
+        document.getElementById('qe-body').innerHTML =
+          '<div class="qe-success">' +
+          '<span class="qe-success-icon">&#10003;</span>' +
+          '<h4>Enquiry sent!</h4>' +
+          '<p>We have received your enquiry about <strong>' + service + '</strong>.<br>We will be in touch within one business day.</p>' +
+          '<button onclick="closeQE()" style="margin-top:1.5rem;background:var(--navy);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;">Close</button>' +
+          '</div>';
+      } else { throw new Error(); }
+    } catch(err) {
+      btn.disabled = false; btn.textContent = 'Send enquiry';
+      alert('Something went wrong. Please email dimitri@bournelaw.com.au directly.');
+    }
+  };
+}
+
+function closeQE() {
+  document.getElementById('qe-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Hamburger
+var ham = document.getElementById('hamburger');
+var mob = document.getElementById('mobile-menu');
+if (ham && mob) {
+  ham.addEventListener('click', function() { mob.classList.toggle('open'); });
+}
+</script>
+
 </body>
 </html>
