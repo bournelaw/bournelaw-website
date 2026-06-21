@@ -694,3 +694,24 @@ textarea.consult-field { resize: vertical; min-height: 100px; margin-bottom: 1.5
   .footer-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.7rem; letter-spacing: 0.1em; }
 }
+
+/* ── MODULE CARD HOVER (individual card mode) ─── */
+.module-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.13) !important;
+}
+
+/* ── HERO SEARCH (light box variant) ───────────── */
+.hero-search-box .hero-search-input::placeholder { color: #aaa; }
+.hero-search-box:focus-within { box-shadow: 0 8px 32px rgba(0,0,0,0.22) !important; }
+
+/* ── CONSULT FORM ORNAMENT ──────────────────────── */
+.consult-ornament {
+  display: block; font-size: 18px; color: #bbb;
+  margin: 0.4rem 0 1rem; letter-spacing: 8px; text-align: center;
+}
+
+/* ── MODULE GRID RESPONSIVE (2-col → 1-col) ─────── */
+@media (max-width: 680px) {
+  .module-grid { grid-template-columns: 1fr !important; }
+}
