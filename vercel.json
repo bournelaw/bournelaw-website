@@ -1,4 +1,8 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "functions": {
+    "api/deliver.js":        { "maxDuration": 30 },
+    "api/stripe-webhook.js": { "maxDuration": 30 }
+  }
 }
