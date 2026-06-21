@@ -74,6 +74,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .doc-preview iframe{width:100%;height:600px;border:none}
 .release-success{background:#d1e7dd;color:#0a3622;padding:14px 18px;border-radius:8px;font-size:14px;display:none;margin-top:12px}
 .spinner{display:none;text-align:center;padding:40px;color:#888}
+.edit-toolbar{display:none;padding:8px 12px;background:#f0f2f7;border-bottom:1px solid #e0e4ef;gap:6px;flex-wrap:wrap;align-items:center}
+.edit-toolbar button{padding:4px 10px;border:1px solid #ccd;border-radius:5px;background:#fff;font-size:12px;cursor:pointer;color:#333}
+.edit-toolbar button:hover{background:#e8eef7;border-color:#0f2654}
+.edit-toolbar .sep{width:1px;height:18px;background:#dde;margin:0 4px}
+.edit-mode-badge{font-size:11px;color:#0f2654;font-weight:600;margin-left:auto;background:#e8eef7;padding:3px 10px;border-radius:20px}
 </style>
 </head>
 <body>
@@ -221,6 +226,7 @@ function renderList() {
 
 // ── OPEN MATTER ──────────────────────────────────────────────────────────────
 async function openMatter(id) {
+  EDIT_MODE = false;
   document.querySelectorAll('.matter-item').forEach(function(el){ el.classList.remove('active'); });
   var el = document.getElementById('mi-'+id);
   if (el) el.classList.add('active');
@@ -284,7 +290,23 @@ function renderDetail(m) {
     + '<div class="section-card"><h3>Solicitor notes (included with document on delivery)</h3>'
     +   '<textarea class="notes-area" id="sol-notes" placeholder="Add any notes, instructions or caveats to send to the client with their document..." '+(released||isAwaiting?'readonly':'')+' style="'+(released||isAwaiting?'background:#f7f8fc;color:#888;':'')+('">')+(escHtml(m.solicitor_notes||''))+'</textarea>'
     + '</div>'
-    + '<div class="section-card"><h3>Draft document preview</h3>'
+    + '<div class="section-card">'
+    +   '<h3 style="display:flex;align-items:center;justify-content:space-between;padding-bottom:8px;border-bottom:1px solid #e0e4ef;margin-bottom:0">'
+    +     'Draft document preview'
+    +     (released || isAwaiting ? '' : '<button class="btn btn-outline" id="edit-doc-btn" onclick="toggleEdit()" style="font-size:12px;padding:5px 14px;font-weight:600">Edit document</button>')
+    +   '</h3>'
+    +   '<div class="edit-toolbar" id="edit-toolbar" style="display:flex">'
+    +     '<button onclick="execFmt(\'bold\')"><strong>B</strong></button>'
+    +     '<button onclick="execFmt(\'italic\')"><em>I</em></button>'
+    +     '<button onclick="execFmt(\'underline\')" style="text-decoration:underline">U</button>'
+    +     '<div class="sep"></div>'
+    +     '<button onclick="execFmt(\'insertUnorderedList\')">&#x2022; List</button>'
+    +     '<button onclick="execFmt(\'insertOrderedList\')">1. List</button>'
+    +     '<div class="sep"></div>'
+    +     '<button onclick="execFmt(\'justifyLeft\')">Left</button>'
+    +     '<button onclick="execFmt(\'justifyCenter\')">Centre</button>'
+    +     '<div class="edit-mode-badge">&#x270F; Editing — changes saved on release</div>'
+    +   '</div>'
     +   '<div class="doc-preview"><iframe id="doc-iframe" srcdoc="'+escAttr(m.draft_html||'<p>No document generated.</p>')+'"></iframe></div>'
     + '</div>'
     + '<div id="release-result"></div>'
@@ -303,12 +325,14 @@ async function releaseMatter(id) {
     if (feeInput) feeInput.focus();
     return;
   }
+  var editedHtml = getEditedHtml();
+  EDIT_MODE = false;
   btn.disabled = true; btn.textContent = 'Sending payment request...';
   try {
     var r = await fetch('/api/release', {
       method:'POST',
       headers:{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json'},
-      body: JSON.stringify({ id: id, notes: notes, fee_amount: parseFloat(feeAmount) })
+      body: JSON.stringify({ id: id, notes: notes, fee_amount: parseFloat(feeAmount), edited_html: editedHtml })
     });
     var result = await r.json();
     if (result.success) {
@@ -343,6 +367,41 @@ async function resendPaymentLink(id) {
     document.getElementById('release-result').innerHTML = '<div style="color:#c0392b;padding:12px;font-size:13px">Error fetching payment link.</div>';
   }
   btn.disabled = false; btn.textContent = 'Resend payment link';
+}
+
+// ── DOCUMENT EDITOR ──────────────────────────────────────────────────────────
+var EDIT_MODE = false;
+
+function toggleEdit() {
+  var iframe = document.getElementById('doc-iframe');
+  var btn = document.getElementById('edit-doc-btn');
+  var toolbar = document.getElementById('edit-toolbar');
+  if (!iframe || !iframe.contentDocument) return;
+  EDIT_MODE = !EDIT_MODE;
+  iframe.contentDocument.designMode = EDIT_MODE ? 'on' : 'off';
+  if (btn) {
+    btn.textContent = EDIT_MODE ? 'Done editing' : 'Edit document';
+    btn.style.background = EDIT_MODE ? '#0f2654' : '';
+    btn.style.color = EDIT_MODE ? '#fff' : '';
+  }
+  if (toolbar) toolbar.style.display = EDIT_MODE ? 'flex' : 'none';
+  if (EDIT_MODE && iframe.contentDocument.body) iframe.contentDocument.body.focus();
+}
+
+function execFmt(cmd) {
+  var iframe = document.getElementById('doc-iframe');
+  if (iframe && iframe.contentDocument) {
+    iframe.contentDocument.execCommand(cmd, false, null);
+    iframe.contentDocument.body.focus();
+  }
+}
+
+function getEditedHtml() {
+  var iframe = document.getElementById('doc-iframe');
+  if (iframe && iframe.contentDocument && iframe.contentDocument.body) {
+    return iframe.contentDocument.body.innerHTML;
+  }
+  return null;
 }
 
 function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
