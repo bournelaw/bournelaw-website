@@ -3,384 +3,178 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bourne Law - Immigration, Conveyancing and Legal Services | Gold Coast</title>
-  <meta name="description" content="Gold Coast law firm. Immigration visas, conveyancing, litigation, employment law, wills and estates, business law. MARA registered LPN 5511816." />
+  <title>Bourne Law &mdash; Immigration &amp; Legal Services, Gold Coast</title>
+  <meta name="description" content="Gold Coast law firm. Immigration visas, conveyancing, litigation, employment law, wills and estates, business law. LPN 5511816." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
+<!-- TOPBAR -->
+<div class="topbar">
+  <a href="tel:0755383870">&#9742;&nbsp; 07 55 38 38 70</a>
+  <span>|</span>
+  <a href="mailto:dimitri@bournelaw.com.au">dimitri@bournelaw.com.au</a>
+</div>
+
 <!-- NAV -->
-<nav class="nav">
-  <div class="logo">
+<nav class="nav" id="main-nav">
+  <a href="#" class="logo">
     <div class="logo-icon">BL</div>
-    <span>Bourne Law</span>
-  </div>
+    <div>
+      <span>Bourne Law</span>
+      <span class="logo-sub">Immigration &middot; Legal</span>
+    </div>
+  </a>
   <div class="nav-links">
+    <a href="#our-firm">Our Firm</a>
     <a href="#immigration">Immigration</a>
-    <a href="#legal">Legal services</a>
     <a href="#investment">Investment</a>
-    <a href="#our-firm">Our firm</a>
-    <a href="#pay">Pay online</a>
-    <a href="mailto:dimitri@bournelaw.com.au" class="nav-cta">Contact us</a>
+    <a href="#legal">Legal</a>
+    <a href="#self-service">Self-Service</a>
+    <a href="#pay">Pay Online</a>
+    <a href="#contact">Contact Us</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
+  <a href="#our-firm">Our Firm</a>
   <a href="#immigration">Immigration</a>
-  <a href="#legal">Legal services</a>
   <a href="#investment">Investment</a>
-  <a href="#our-firm">Our firm</a>
-  <a href="#pay">Pay online</a>
-  <a href="mailto:dimitri@bournelaw.com.au">Contact us</a>
+  <a href="#legal">Legal</a>
+  <a href="#self-service">Self-Service</a>
+  <a href="#pay">Pay Online</a>
+  <a href="#contact">Contact Us</a>
 </div>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
-    <h1>Immigration &amp; legal<br><em>done right.</em></h1>
-    <p class="hero-sub">Gold Coast's trusted law firm -- visas, conveyancing, litigation, employment law, business migration and more. full-service.</p>
+    <div class="section-ornament" style="margin-bottom:1.1rem"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <p class="hero-eyebrow">Gold Coast, Queensland</p>
+    <h1>The Law Firm<br><strong>For Business &amp; Life</strong></h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">Immigration visas, business migration, conveyancing, litigation, employment law and more &mdash; handled with clarity and full end-to-end support.</p>
 
     <div class="hero-search-wrap">
       <div class="hero-search-box">
         <span class="hero-search-icon">&#128269;</span>
-        <input
-          type="text"
-          class="hero-search-input"
-          id="hero-search"
+        <input type="text" class="hero-search-input" id="hero-search"
           placeholder="What do you need? e.g. partner visa, will, letter of demand..."
-          autocomplete="off"
-        />
+          autocomplete="off" />
         <button class="hero-search-btn" id="hero-search-btn">Find my service</button>
       </div>
-      <div class="hero-search-hint">Type a few words and we'll point you to exactly the right service</div>
+      <div class="hero-search-hint">Type a few words and we&rsquo;ll point you to exactly the right service</div>
       <div class="search-suggestions" id="search-suggestions"></div>
     </div>
 
     <div class="hero-btns">
-      <a href="#immigration" class="btn-primary">Immigration visas</a>
-      <a href="#investment" class="btn-outline">Business migration</a>
+      <a href="#immigration" class="btn-primary">Immigration</a>
+      <a href="#contact" class="btn-outline">Book a Consultation</a>
     </div>
     <div class="badge-row">
-      <span class="badge">&#10003; LPN 5511816</span>
-      <span class="badge">&#128205; Gold Coast, QLD</span>
-      <span class="badge">&#9878; Full legal services</span>
-      <span class="badge">&#128222; 07 55 38 38 70</span>
+      <span class="badge">LPN 5511816</span>
+      <span class="badge">Gold Coast, QLD</span>
+      <span class="badge">Full Legal Services</span>
     </div>
   </div>
 </section>
 
-<!-- IMMIGRATION SERVICES -->
-<section class="section" id="immigration">
+<!-- WHO WE ARE -->
+<section class="section" id="our-firm">
+  <div class="section-inner" style="max-width:900px">
+    <div class="section-header">
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Our Firm</div>
+      <h2 class="section-title">Who We Are</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start" class="who-grid">
+      <div>
+        <p style="font-size:15px;line-height:1.9;color:var(--text-muted);margin-bottom:1.25rem">We differentiate ourselves from your regular law firm. We have a team of professionals experienced in both migration and investment. We create a reliable foundation, take the initiative, and work for you and with you to grow your business and prosper in your industry.</p>
+        <p style="font-size:15px;line-height:1.9;color:var(--text-muted);margin-bottom:1.25rem">We limit our client base to ensure that we can provide in-depth support and hold your hand throughout your whole process.</p>
+        <p style="font-size:15px;line-height:1.9;color:var(--text-muted)">We have extensive experience facilitating strategic business growth and marketing within all major industries. We can assist you with all facets of business &mdash; from brand development, service and product marketing and employee recruitment, to acquiring licensing, gaining capital and pursuing both property and product investments.</p>
+      </div>
+      <div>
+        <h3 style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dark);margin-bottom:1.5rem;border-bottom:1px solid var(--border);padding-bottom:0.75rem">Our Services</h3>
+        <div style="display:flex;flex-direction:column;gap:1.4rem">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:5px">&#9672; Immigration</div>
+            <div style="font-size:13.5px;color:var(--text-muted);line-height:1.75">Thinking about migrating to Australia? We have dedicated professionals who work with you to prepare and submit applications with the best prospects of success.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:5px">&#9672; Investment</div>
+            <div style="font-size:13.5px;color:var(--text-muted);line-height:1.75">Want to buy a property or business in Australia? We include Australian registered lawyers, CPA accountants, licensed real-estate agents and business brokers.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:5px">&#9672; Commercial Law</div>
+            <div style="font-size:13.5px;color:var(--text-muted);line-height:1.75">Our lawyers have commerce-related qualifications to match their legal expertise, enabling them to understand your matter and advise across employment, commercial and general disputes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMMIGRATION -->
+<section class="section section--alt" id="immigration">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-label">Immigration law</div>
-      <h2 class="section-title">Australian visa services</h2>
-      <p class="section-sub">All-inclusive professional assistance -- from assessment through to grant.</p>
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Immigration</div>
+      <h2 class="section-title">Visa Services</h2>
+      <p class="section-sub">We prepare and lodge applications across all major visa streams. Every matter is handled personally by Dimitri Bourne.</p>
     </div>
     <div class="visa-grid">
-
       <div class="visa-card">
-        <div class="visa-subclass">Subclass 500</div>
-        <h3>Student visa</h3>
-        <p>Study at an Australian institution. We handle CoE coordination, health examinations, and full application lodgement.</p>
-        <button class="visa-btn" onclick="quickEnquire('Student visa (500)')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass">Subclass 820/801</div>
-        <h3>Partner visa</h3>
-        <p>Onshore partner visa for de facto or married couples. Includes Stage 1 (820) temporary and Stage 2 (801) permanent.</p>
+        <div class="visa-subclass">Subclass 820 / 801</div>
+        <h3>Partner Visa</h3>
+        <p>For spouses and de facto partners of Australian citizens or permanent residents. Temporary to permanent two-stage pathway. Your marriage must be legal under Australian Law.</p>
         <button class="visa-btn" onclick="quickEnquire('Partner visa (820/801)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
-        <div class="visa-subclass">Subclass 482</div>
-        <h3>Temporary skill shortage</h3>
-        <p>Employer-sponsored work visa for skilled overseas workers across short, medium and labour agreement streams.</p>
-        <button class="visa-btn" onclick="quickEnquire('TSS visa (482)')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass">Subclass 190</div>
-        <h3>Skilled nominated</h3>
-        <p>State-nominated permanent residency for skilled workers. We manage your EOI, nomination, and visa application.</p>
+        <div class="visa-subclass">Subclass 189 / 190</div>
+        <h3>Skilled &amp; Nominated</h3>
+        <p>Points-tested visa for skilled workers. The 190 requires state or territory nomination &mdash; we manage the full EOI process, skills assessment and lodgement.</p>
         <button class="visa-btn" onclick="quickEnquire('Skilled nominated (190)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
-        <div class="visa-subclass">Subclass 188C</div>
-        <h3>Significant investor</h3>
-        <p>Business innovation and investment stream for high-net-worth individuals. Minimum complying investment required.</p>
-        <button class="visa-btn" onclick="quickEnquire('Significant investor (188C)')">Enquire now</button>
+        <div class="visa-subclass">Subclass 482</div>
+        <h3>Temporary Skill Shortage</h3>
+        <p>Employer-sponsored work visa allowing skilled overseas workers to fill genuine vacancies. Standard Business Sponsorship with short and medium-term streams.</p>
+        <button class="visa-btn" onclick="quickEnquire('TSS visa (482)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
-        <div class="visa-subclass">Subclass 192</div>
-        <h3>Pacific engagement visa</h3>
-        <p>Ballot-based permanent visa for Pacific and Timor-Leste nationals. We manage your ballot registration and full application.</p>
-        <button class="visa-btn" onclick="quickEnquire('Pacific engagement (192)')">Enquire now</button>
+        <div class="visa-subclass">Subclass 500</div>
+        <h3>Student Visa</h3>
+        <p>This visa allows you to stay in Australia to study full-time in a recognised educational institution. You can study anything from certificate level up to a doctorate.</p>
+        <button class="visa-btn" onclick="quickEnquire('Student visa (500)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
-        <div class="visa-subclass">Visitor</div>
-        <h3>Visitor &amp; tourist visa</h3>
-        <p>Short-stay visitor visas for tourism, family visits, and business purposes. Fast assessment and lodgement.</p>
+        <div class="visa-subclass">Subclass 600</div>
+        <h3>Visitor Visa</h3>
+        <p>Short-stay tourism, family visit or business visitor visa. We advise on the appropriate stream and prepare a compelling application package.</p>
         <button class="visa-btn" onclick="quickEnquire('Visitor visa')">Enquire now</button>
       </div>
-
-      <div class="visa-card visa-card--cta">
-        <div class="visa-subclass">All visas</div>
-        <h3>Not sure which visa?</h3>
-        <p>Book a paid consultation and we'll assess your eligibility and recommend the best pathway for your circumstances.</p>
-        <button class="visa-btn" onclick="openModule('consultation')">Book &amp; pay now &#8594;</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- LEGAL SERVICES -->
-<section class="section section--alt" id="legal">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">Legal services</div>
-      <h2 class="section-title">Solicitor &amp; legal services</h2>
-      <p class="section-sub">Full-service legal support for individuals, families, and businesses across Queensland.</p>
-    </div>
-    <div class="visa-grid">
-
       <div class="visa-card">
-        <div class="visa-subclass legal-badge">Conveyancing</div>
-        <h3>Property conveyancing</h3>
-        <p>Buying or selling residential or commercial property? We handle title searches, contract review, settlements, and transfer of ownership from start to finish.</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Property conveyancing')">Enquire now</button>
+        <div class="visa-subclass">Subclass 192</div>
+        <h3>Pacific Engagement</h3>
+        <p>For nationals of Pacific Island countries and Timor-Leste, including PNG. Ballot-based permanent residence pathway. We manage ballot and full application.</p>
+        <button class="visa-btn" onclick="quickEnquire('Pacific engagement (192)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
-        <div class="visa-subclass legal-badge">Litigation</div>
-        <h3>Civil litigation</h3>
-        <p>Disputes, debt recovery, contract breaches, and Supreme and District Court matters. We represent you from pre-litigation negotiation through to judgment.</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Civil litigation')">Enquire now</button>
+        <div class="visa-subclass">Subclass 186</div>
+        <h3>Employer Nomination</h3>
+        <p>Permanent residence through employer nomination. Direct entry, temporary residence transition and labour agreement streams. Full-time position required.</p>
+        <button class="visa-btn" onclick="quickEnquire('Employer nomination (186)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
-        <div class="visa-subclass legal-badge">Employment</div>
-        <h3>Employment law</h3>
-        <p>Unfair dismissal, workplace disputes, underpayment claims, enterprise agreements, and employer/employee advice under the Fair Work Act.</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Employment law')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass legal-badge">Wills &amp; Estates</div>
-        <h3>Wills &amp; estate planning</h3>
-        <p>Drafting wills, powers of attorney, enduring POA, advance health directives, and estate administration. Protect your assets and your loved ones.</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Wills and estates')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass legal-badge">Business Law</div>
-        <h3>Commercial &amp; business law</h3>
-        <p>Company formation, shareholder agreements, commercial contracts, business sales and acquisitions, and ongoing business legal advice.</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Business and commercial law')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass legal-badge">Family Law</div>
-        <h3>Family law</h3>
-        <p>Separation, divorce, property settlements, parenting plans, consent orders, and prenuptial agreements (Binding Financial Agreements).</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Family law')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass legal-badge">Leasing</div>
-        <h3>Commercial leasing</h3>
-        <p>Lease review, negotiation, and drafting for landlords and tenants. Retail, commercial, and industrial leases across Queensland.</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Commercial leasing')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass legal-badge">Criminal</div>
-        <h3>Criminal &amp; traffic law</h3>
-        <p>Representation in Queensland Magistrates Court for traffic offences, drink driving, minor criminal charges, and bail applications.</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Criminal and traffic law')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass legal-badge">Dispute Resolution</div>
-        <h3>Mediation &amp; dispute resolution</h3>
-        <p>Before going to court, explore mediation. We represent you in commercial, property, and family disputes -- often resolving matters faster and at a fraction of court costs.</p>
-        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Mediation and dispute resolution')">Enquire now</button>
-      </div>
-
-      <div class="visa-card visa-card--cta">
-        <div class="visa-subclass legal-badge">All areas</div>
-        <h3>Not sure where to start?</h3>
-        <p>Book a paid initial consultation and we'll identify the right legal strategy for your situation across any area of law.</p>
-        <button class="visa-btn visa-btn--legal" onclick="openModule('consultation')">Book &amp; pay now &#8594;</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- SELF-SERVICE MODULES -->
-<section class="section" id="self-service">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">Online -- pay &amp; apply now</div>
-      <h2 class="section-title">Self-service legal products</h2>
-      <p class="section-sub">Pay online, complete our guided form and we handle the rest. All applications reviewed by a qualified solicitor before delivery.</p>
-    </div>
-    <div class="module-grid">
-
-      <div class="module-card module-card--featured">
-        <div class="module-top">
-          <div class="module-icon module-icon--blue">&#128197;</div>
-          <div class="module-badge module-badge--blue">Most popular</div>
-        </div>
-        <h3>Book a Consultation</h3>
-        <p>Not sure where to start? Book a 60-minute consultation with Dimitri -- immigration, legal, family law, litigation, or anything in between.</p>
-        <ul class="module-includes">
-          <li>Phone, video, or in person</li>
-          <li>Any area of law or immigration</li>
-          <li>Written advice summary provided</li>
-        </ul>
-        <button class="module-btn module-btn--navy" onclick="openModule('consultation')">Book &amp; pay now &#8594;</button>
-      </div>
-
-      <div class="module-card">
-        <div class="module-top">
-          <div class="module-icon">&#128221;</div>
-          <div class="module-badge">48hr turnaround</div>
-        </div>
-        <h3>Online Will Kit</h3>
-        <p>Tell us about your assets, beneficiaries, and executor. We draft your legal will -- reviewed by Dimitri Bourne, ready for your signature at a JP.</p>
-        <ul class="module-includes">
-          <li>Solicitor review included</li>
-          <li>Guidance on JP witnessing</li>
-        </ul>
-        <button class="module-btn" onclick="openModule('will')">Start will application &#8594;</button>
-      </div>
-
-      <div class="module-card">
-        <div class="module-top">
-          <div class="module-icon">&#9889;</div>
-          <div class="module-badge">Same day</div>
-        </div>
-        <h3>Letter of Demand</h3>
-        <p>Owed money? Provide the details and we'll draft a formal letter of demand on Bourne Law letterhead -- signed by a solicitor and sent same day.</p>
-        <ul class="module-includes">
-          <li>Solicitor-signed letter</li>
-          <li>Sent via email + post</li>
-          <li>Debt recovery advice included</li>
-        </ul>
-        <button class="module-btn" onclick="openModule('demand')">Start letter of demand &#8594;</button>
-      </div>
-
-      <div class="module-card">
-        <div class="module-top">
-          <div class="module-icon">&#128706;</div>
-          <div class="module-badge">24hr report</div>
-        </div>
-        <h3>Visa Eligibility Report</h3>
-        <p>Not sure which visa you qualify for? Complete our assessment form and receive a full written eligibility report across all relevant visa pathways.</p>
-        <ul class="module-includes">
-          <li>All visa pathways assessed</li>
-          <li>Points calculation included</li>
-          <li>Reviewed by Dimitri Bourne</li>
-        </ul>
-        <button class="module-btn" onclick="openModule('eligibility')">Start eligibility assessment &#8594;</button>
-      </div>
-
-      <div class="module-card">
-        <div class="module-top">
-          <div class="module-icon">&#127891;</div>
-          <div class="module-badge">Full service</div>
-        </div>
-        <h3>Skills Assessment</h3>
-        <p>Engineers Australia, VETASSESS, ACS, or TRA -- we prepare your complete skills assessment application and lodge on your behalf.</p>
-        <ul class="module-includes">
-          <li>All assessment bodies</li>
-          <li>Document checklist &amp; review</li>
-          <li>Full lodgement support</li>
-        </ul>
-        <button class="module-btn" onclick="openModule('skills')">Start skills assessment &#8594;</button>
-      </div>
-
-      <div class="module-card">
-        <div class="module-top">
-          <div class="module-icon">&#128196;</div>
-          <div class="module-badge">Quick turnaround</div>
-        </div>
-        <h3>Statutory Declaration</h3>
-        <p>Need a stat dec drafted? Provide the facts and we'll prepare a properly worded statutory declaration under Queensland or Commonwealth law.</p>
-        <ul class="module-includes">
-          <li>Queensland or Commonwealth form</li>
-          <li>Solicitor reviewed</li>
-          <li>Same-day where possible</li>
-        </ul>
-        <button class="module-btn" onclick="openModule('statdec')">Start stat dec &#8594;</button>
-      </div>
-
-      <div class="module-card">
-        <div class="module-top">
-          <div class="module-icon">&#128336;</div>
-          <div class="module-badge">48hr delivery</div>
-        </div>
-        <h3>Character Reference Letter</h3>
-        <p>Need a professional character reference for court, immigration, or employment? We draft a formal reference on Bourne Law letterhead.</p>
-        <ul class="module-includes">
-          <li>Court or professional use</li>
-          <li>Solicitor letterhead + signature</li>
-          <li>Tailored to your purpose</li>
-        </ul>
-        <button class="module-btn" onclick="openModule('charref')">Start reference &#8594;</button>
-      </div>
-
-      <div class="module-card">
-        <div class="module-top">
-          <div class="module-icon">&#128141;</div>
-          <div class="module-badge">Fixed fee</div>
-        </div>
-        <h3>Prenuptial Agreement (BFA)</h3>
-        <p>Protect your assets before marriage with a Binding Financial Agreement. We prepare and certify the BFA with independent legal advice as required by law.</p>
-        <ul class="module-includes">
-          <li>Independent legal advice certificate</li>
-          <li>Fully binding under Family Law Act</li>
-          <li>Couples discount available</li>
-        </ul>
-        <button class="module-btn" onclick="openModule('bfa')">Start BFA application &#8594;</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="section section--alt" id="how-it-works">
-  <div class="section-inner">
-    <div class="section-header" style="text-align:center;max-width:600px;margin:0 auto 3rem">
-      <div class="section-label">Simple process</div>
-      <h2 class="section-title">How it works</h2>
-      <p class="section-sub">From first contact to final outcome -- we guide you every step of the way.</p>
-    </div>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <h3>Book a consultation</h3>
-        <p>Speak with Dimitri directly. We assess your situation, explain your options, and recommend the right pathway -- whether immigration, legal, or both.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <h3>We prepare everything</h3>
-        <p>Our team handles all documentation, applications, and filings. You receive a clear costs agreement, regular updates, and direct access to your lawyer.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <h3>We deliver the outcome</h3>
-        <p>Whether it is a visa grant, a settled dispute, or a completed conveyance -- we see it through to completion and advise on next steps.</p>
+        <div class="visa-subclass">Subclass 485</div>
+        <h3>Graduate Visa</h3>
+        <p>The Temporary Skilled Graduate visa offers international graduates with an Australian education a way to gain valuable work experience in Australia for 18 to 48 months.</p>
+        <button class="visa-btn" onclick="quickEnquire('Graduate visa (485)')">Enquire now</button>
       </div>
     </div>
   </div>
@@ -390,130 +184,345 @@
 <section class="section" id="investment">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-label">Business migration &amp; investment</div>
-      <h2 class="section-title">Investment visas &amp; business services</h2>
-      <p class="section-sub">We have dedicated experience assisting investors, entrepreneurs, and business owners establish and grow in Australia.</p>
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">Business Migration</h2>
+      <p class="section-sub">Comprehensive support for high-net-worth individuals and business owners seeking to invest and migrate to Australia.</p>
     </div>
     <div class="visa-grid">
-
       <div class="visa-card">
         <div class="visa-subclass">Subclass 188A</div>
-        <h3>Business innovation visa</h3>
-        <p>For individuals with a successful business career and genuine commitment to investing or operating a business in Australia. Requires an EOI and state nomination.</p>
+        <h3>Business Innovation</h3>
+        <p>For business owners with a successful career who want to own and manage a new or existing business in Australia. Requires Expression of Interest and state nomination.</p>
         <button class="visa-btn" onclick="quickEnquire('Business innovation (188A)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
         <div class="visa-subclass">Subclass 188B</div>
-        <h3>Business investment visa</h3>
-        <p>For significant investors willing to invest a significant amount into a state or territory government bond. Safe investment with a direct pathway to permanence.</p>
-        <button class="visa-btn" onclick="quickEnquire('Business investment (188B)')">Enquire now</button>
+        <h3>Investor Stream</h3>
+        <p>For investors willing to invest into a safe and secure investment with any state or territory government in Australia at a low interest rate.</p>
+        <button class="visa-btn" onclick="quickEnquire('Investor stream (188B)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
         <div class="visa-subclass">Subclass 188C</div>
-        <h3>Significant investor visa</h3>
-        <p>For those willing to invest a significant amount into complying investments. Maintain business and investment activity in Australia for a minimum of 4 years.</p>
+        <h3>Significant Investor</h3>
+        <p>For high-net-worth individuals wanting to make a significant complying investment in Australia and maintain business and investment activity for a minimum of 4 years.</p>
         <button class="visa-btn" onclick="quickEnquire('Significant investor (188C)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
         <div class="visa-subclass">Subclass 188D</div>
-        <h3>Premium investor visa</h3>
-        <p>For those willing to invest a substantial amount into premium complying investments. Nominated by Austrade -- does not require splitting across multiple investment categories.</p>
+        <h3>Premium Investor</h3>
+        <p>For those willing to invest a substantial amount into premium complying investments. Nominated by Austrade &mdash; does not require splitting investment categories.</p>
         <button class="visa-btn" onclick="quickEnquire('Premium investor (188D)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
         <div class="visa-subclass">Subclass 188E</div>
-        <h3>Entrepreneur visa</h3>
-        <p>For applicants with a qualifying funding agreement from an approved third party to commercialise a product or develop a business in Australia.</p>
+        <h3>Entrepreneur</h3>
+        <p>For applicants with a qualifying funding agreement from an approved third party to commercialise a product or develop a business in Australia. Nominated by state or territory.</p>
         <button class="visa-btn" onclick="quickEnquire('Entrepreneur (188E)')">Enquire now</button>
       </div>
-
       <div class="visa-card">
-        <div class="visa-subclass">Business</div>
-        <h3>Business start-up Australia</h3>
-        <p>We assist with ASIC company setup, ABN registration, business structure advice, and ongoing legal support for your new Australian venture.</p>
-        <button class="visa-btn" onclick="quickEnquire('Business start-up Australia')">Enquire now</button>
+        <div class="visa-subclass">Business Services</div>
+        <h3>Business Start-Up</h3>
+        <p>ASIC company registration, ABN, shareholder agreements and business structuring advice for new businesses in Australia or expanding from China and internationally.</p>
+        <button class="visa-btn" onclick="quickEnquire('Business start-up')">Enquire now</button>
       </div>
-
       <div class="visa-card">
-        <div class="visa-subclass">International</div>
-        <h3>Business start-up international</h3>
-        <p>Expanding from China, PNG, the Philippines, or elsewhere? We help international businesses establish an Australian presence -- registration, compliance, and migration support.</p>
-        <button class="visa-btn" onclick="quickEnquire('Business start-up international')">Enquire now</button>
-      </div>
-
-      <div class="visa-card">
-        <div class="visa-subclass">Commercial</div>
-        <h3>Sell or acquire a business</h3>
-        <p>We act for vendors and purchasers -- business sale contracts, due diligence, goodwill transfers, FIRB approvals, and post-settlement advice.</p>
+        <div class="visa-subclass">Business Services</div>
+        <h3>Sell &amp; Purchase a Business</h3>
+        <p>We assist across the complete transaction &mdash; from due diligence to contract, licensing, gaining capital and pursuing both property and product investments.</p>
         <button class="visa-btn" onclick="quickEnquire('Business sale or acquisition')">Enquire now</button>
       </div>
-
-    </div>
-    <div style="background:var(--blue-light);border-radius:12px;padding:1.5rem 2rem;margin-top:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
-      <div style="flex:1;min-width:200px">
-        <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px">Chinese-language services available</div>
-        <div style="font-size:13px;color:var(--text-muted)">We serve Chinese business migration clients with documentation in both English and Mandarin. Contact us for a bilingual consultation.</div>
+      <div class="visa-card">
+        <div class="visa-subclass">Business Services</div>
+        <h3>Business Coaching</h3>
+        <p>Strategic guidance for businesses entering or growing in the Australian market. Brand development, product marketing, employee recruitment and management advice.</p>
+        <button class="visa-btn" onclick="quickEnquire('Business coaching')">Enquire now</button>
       </div>
-      <button class="visa-btn" style="white-space:nowrap;min-width:160px" onclick="quickEnquire('Chinese business migration')">Get in touch</button>
     </div>
   </div>
 </section>
 
-<!-- OUR FIRM -->
-<section class="section section--alt" id="our-firm">
+<!-- LEGAL SERVICES -->
+<section class="section section--alt" id="legal">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-label">Our firm</div>
-      <h2 class="section-title">Why choose Bourne Law</h2>
-      <p class="section-sub">We are not your average migration firm. We combine registered migration expertise with full solicitor capabilities under one roof on the Gold Coast.</p>
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Commercial Law</div>
+      <h2 class="section-title">Legal Services</h2>
+      <p class="section-sub">Our lawyers act and advise on legal issues relating to a wide range of business and commercial dealings across all Queensland courts.</p>
     </div>
+    <div class="visa-grid">
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Property</div>
+        <h3>Conveyancing</h3>
+        <p>Buy or sell residential or commercial property. We handle contracts, title searches, settlement and all associated documentation from start to completion.</p>
+        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Property conveyancing')">Enquire now</button>
+      </div>
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Disputes</div>
+        <h3>Litigation</h3>
+        <p>We represent clients from the initial consultation through negotiations to the dispute. We act in the Magistrates, District and Supreme Courts and Federal Circuit Court.</p>
+        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Civil litigation')">Enquire now</button>
+      </div>
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Workplace</div>
+        <h3>Employment Law</h3>
+        <p>Employment advice including compliance with dismissal, pay guides and conditions. Unfair dismissal, underpayment and Fair Work Commission representation.</p>
+        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Employment law')">Enquire now</button>
+      </div>
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Family</div>
+        <h3>Family Law</h3>
+        <p>Separation, divorce, parenting arrangements, property settlements and binding financial agreements. Handled with care and clear advice at every stage.</p>
+        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Family law')">Enquire now</button>
+      </div>
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Estates</div>
+        <h3>Wills &amp; Estates</h3>
+        <p>Draft a will, enduring power of attorney or advance health directive. We also manage estate administration, probate and distribution of assets.</p>
+        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Wills and estates')">Enquire now</button>
+      </div>
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Commercial</div>
+        <h3>General Commercial</h3>
+        <p>Contract formation including interpretation, drafting and advising. Business structuring, franchising, international business and trade, including the business visa.</p>
+        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('General commercial law')">Enquire now</button>
+      </div>
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Property</div>
+        <h3>Commercial Leasing</h3>
+        <p>Retail, commercial and industrial lease review, negotiation and disputes. Payment claims under the Building and Construction Industry Payments Act 2004 (Qld).</p>
+        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Commercial leasing')">Enquire now</button>
+      </div>
+      <div class="visa-card">
+        <div class="visa-subclass legal-badge">Criminal</div>
+        <h3>Criminal &amp; Traffic</h3>
+        <p>Court representation for criminal and traffic matters including drink driving, licence suspension, bail applications and summary offences across all Queensland courts.</p>
+        <button class="visa-btn visa-btn--legal" onclick="quickEnquire('Criminal and traffic law')">Enquire now</button>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- SELF-SERVICE PRODUCTS -->
+<section class="section" id="self-service">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Self-Service</div>
+      <h2 class="section-title">Legal Products</h2>
+      <p class="section-sub">Get a professional legal document prepared, reviewed and delivered without a full engagement. Fast turnaround, transparent process.</p>
+    </div>
+    <div class="module-grid">
+      <div class="module-card module-card--featured">
+        <div class="module-top">
+          <div class="module-icon module-icon--blue">&#128197;</div>
+          <div class="module-badge module-badge--blue">Most popular</div>
+        </div>
+        <h3>Initial Consultation</h3>
+        <p>60-minute session with Dimitri Bourne. Bring any immigration or legal question &mdash; get clear, actionable advice.</p>
+        <ul class="module-includes">
+          <li>60-minute video or in-person session</li>
+          <li>Written summary of advice provided</li>
+          <li>Recommended next steps</li>
+          <li>Any immigration or legal topic</li>
+        </ul>
+        <button class="module-btn module-btn--navy" onclick="openModule('consultation')">Book now</button>
+      </div>
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">&#128706;</div>
+          <div class="module-badge">Immigration</div>
+        </div>
+        <h3>Visa Eligibility Assessment</h3>
+        <p>Not sure which visa pathway suits you? We review your background and provide a written eligibility report.</p>
+        <ul class="module-includes">
+          <li>Online questionnaire</li>
+          <li>Review of your circumstances</li>
+          <li>Written eligibility report</li>
+          <li>Recommended visa pathways</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('eligibility')">Get assessed</button>
+      </div>
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">&#128221;</div>
+          <div class="module-badge">Wills &amp; Estates</div>
+        </div>
+        <h3>Will &amp; Testament</h3>
+        <p>A professionally drafted, legally sound will. Includes enduring POA option for couples.</p>
+        <ul class="module-includes">
+          <li>Single or couple&rsquo;s will</li>
+          <li>Enduring Power of Attorney (add-on)</li>
+          <li>Reviewed by Dimitri Bourne</li>
+          <li>Executed and witnessed</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('will')">Get started</button>
+      </div>
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">&#9889;</div>
+          <div class="module-badge">Disputes</div>
+        </div>
+        <h3>Letter of Demand</h3>
+        <p>Owed money? A solicitor-signed letter of demand delivered same business day.</p>
+        <ul class="module-includes">
+          <li>Solicitor-drafted and signed</li>
+          <li>Same-day turnaround</li>
+          <li>Sent on firm letterhead</li>
+          <li>Follow-up advice included</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('demand')">Order now</button>
+      </div>
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">&#128196;</div>
+          <div class="module-badge">Documents</div>
+        </div>
+        <h3>Statutory Declaration</h3>
+        <p>Need a stat dec drafted, reviewed and witnessed? We handle it quickly with a legally sound document.</p>
+        <ul class="module-includes">
+          <li>Drafted by a solicitor</li>
+          <li>Reviewed and witnessed</li>
+          <li>Suitable for any purpose</li>
+          <li>Same or next-day delivery</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('statdec')">Order now</button>
+      </div>
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">&#128336;</div>
+          <div class="module-badge">Documents</div>
+        </div>
+        <h3>Character Reference</h3>
+        <p>A professionally drafted character reference letter on firm letterhead for court, visa or employment purposes.</p>
+        <ul class="module-includes">
+          <li>Drafted on firm letterhead</li>
+          <li>Tailored to your purpose</li>
+          <li>Court, visa or employment use</li>
+          <li>Next-day turnaround</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('charref')">Order now</button>
+      </div>
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">&#128141;</div>
+          <div class="module-badge">Family Law</div>
+        </div>
+        <h3>Binding Financial Agreement</h3>
+        <p>A Binding Financial Agreement before or during marriage, protecting your assets with independent legal advice.</p>
+        <ul class="module-includes">
+          <li>Full BFA prepared</li>
+          <li>Independent legal advice</li>
+          <li>Pre-marriage or during marriage</li>
+          <li>Compliant with Family Law Act</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('bfa')">Get started</button>
+      </div>
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-icon">&#128203;</div>
+          <div class="module-badge">Commercial</div>
+        </div>
+        <h3>Contract Review</h3>
+        <p>Have a contract you need reviewed before signing? We provide a written summary of key risks and recommendations.</p>
+        <ul class="module-includes">
+          <li>Full contract reviewed</li>
+          <li>Written risk summary</li>
+          <li>Recommended amendments</li>
+          <li>Employment, commercial or lease</li>
+        </ul>
+        <button class="module-btn" onclick="openModule('contract')">Upload contract</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section--alt" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Our Process</div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-sub">We handle every matter personally. Three clear steps from first contact to outcome.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Initial Consultation</h3>
+        <p>Book a session with Dimitri. We review your circumstances, explain your options clearly and recommend the right pathway for your situation.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>We Handle Everything</h3>
+        <p>Our team manages all documentation, applications and filings. You receive a clear costs agreement, regular updates and direct access to your lawyer.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Your Outcome</h3>
+        <p>We see your matter through to the best possible result &mdash; whether that is a visa grant, a settled dispute or a completed property transaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR VALUES -->
+<section class="section" id="our-values">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Our Firm</div>
+      <h2 class="section-title">Our Value &amp; Mission</h2>
+    </div>
     <div class="values-grid">
       <div class="value-card">
         <div class="value-icon">&#9672;</div>
-        <h3>Personalised service</h3>
-        <p>We deliberately limit our client intake to ensure every client receives in-depth, attentive support throughout their entire matter -- not just at lodgement.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">&#9672;</div>
-        <h3>Confidence through integrity</h3>
-        <p>Ethics are at the core of everything we do. We provide honest, transparent advice -- even when the answer is not what you hoped to hear.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">&#9672;</div>
-        <h3>Complete service</h3>
-        <p>Immigration AND full legal services under one roof. From your visa application to your property purchase, employment contract, or business dispute -- we cover it all.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">&#9672;</div>
         <h3>Flexibility</h3>
-        <p>Whether you need full-service representation or targeted advice on a specific issue -- phone, video, or in-person consultations available.</p>
+        <p>Whether you are looking to outsource your entire immigration program, or need individual support, we can accommodate and flex to your needs.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">&#9672;</div>
+        <h3>Personalised Attention</h3>
+        <p>Work with a consistent team of professionals who take the time to know you and understand your business.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">&#9672;</div>
+        <h3>Confidence Through Integrity</h3>
+        <p>Ethics are at the core of what we do. Regardless of where we serve you, we are committed to preserving best practices and international integrity.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">&#9672;</div>
+        <h3>Complete Service</h3>
+        <p>We work with you in-house to fully understand your business or family in order to provide the best possible support.</p>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- MEET THE TEAM -->
+<section class="section section--alt" id="meet-the-team">
+  <div class="section-inner" style="max-width:800px">
+    <div class="section-header">
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Our Firm</div>
+      <h2 class="section-title">Meet the Team</h2>
+    </div>
     <div class="team-card">
-      <div class="team-photo">
-        <div class="team-initials">DB</div>
-      </div>
+      <div class="team-photo"><div class="team-initials">DB</div></div>
       <div class="team-bio">
-        <div class="section-label" style="margin-bottom:8px">Principal solicitor</div>
-        <h3 style="font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px">Dimitri Bourne</h3>
-        <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px">LPN 5511816 &middot; Gold Coast, Queensland</div>
-        <p style="font-size:14.5px;color:var(--text-muted);line-height:1.75;margin-bottom:12px">Dimitri is a dual-qualified solicitor with extensive experience across commercial disputes, immigration, and property law. He has global experience in many forms of dispute resolution and deep knowledge of Australian immigration law across all major visa streams.</p>
-        <p style="font-size:14.5px;color:var(--text-muted);line-height:1.75;margin-bottom:16px">Dimitri has extensive experience with business migration (188A-E) for high-net-worth clients from China, PNG, the Philippines, and the broader Pacific region. He takes a straightforward approach -- clear advice, fixed fees where possible, and a commitment to seeing your matter through to the best possible outcome.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <span style="background:var(--blue-light);color:var(--blue-mid);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px">MARA Registered</span>
-          <span style="background:var(--blue-light);color:var(--blue-mid);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px">Queensland Solicitor</span>
-          <span style="background:var(--blue-light);color:var(--blue-mid);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px">Business Migration</span>
-          <span style="background:var(--blue-light);color:var(--blue-mid);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px">Litigation</span>
+        <div class="team-role">Principal Solicitor</div>
+        <h3>Dimitri Bourne</h3>
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:1.1rem;letter-spacing:0.5px">LPN 5511816 &middot; Gold Coast, Queensland</div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.85;margin-bottom:0.85rem">Dimitri is a dual-qualified solicitor with extensive experience across commercial disputes, immigration, and property law. He has global experience in many forms of dispute resolution and deep knowledge of Australian immigration law across all major visa streams.</p>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.85">He takes a straightforward approach &mdash; clear advice, fixed fees where possible, and a commitment to seeing your matter through to the best possible outcome.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:1.1rem">
+          <span style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--teal);text-transform:uppercase">Queensland Solicitor</span>
+          <span style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--teal);text-transform:uppercase">Business Migration</span>
+          <span style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--teal);text-transform:uppercase">Litigation</span>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -521,495 +530,331 @@
 <section class="section" id="faq">
   <div class="section-inner" style="max-width:760px">
     <div class="section-header">
-      <div class="section-label">Common questions</div>
-      <h2 class="section-title">Frequently asked questions</h2>
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">FAQ</h2>
     </div>
     <div class="faq-list">
-
       <details class="faq-item">
         <summary>Is Dimitri Bourne registered to provide immigration advice?</summary>
-        <div class="faq-body">Yes. Dimitri Bourne is a Queensland solicitor and MARA registered under LPN 5511816. Only registered agents and legal practitioners can lawfully charge fees for immigration advice in Australia.</div>
+        <div class="faq-body">Yes. Dimitri Bourne is a Queensland solicitor registered under LPN 5511816. Only registered agents and legal practitioners can lawfully charge fees for immigration advice in Australia.</div>
       </details>
-
       <details class="faq-item">
         <summary>How long does a visa application take?</summary>
-        <div class="faq-body">Processing times vary significantly by visa type. Partner visas (820/801) can take 12-36 months. Skilled independent visas (189/190) typically take 3-12 months from invitation. Business migration visas (188 stream) can take 12-24 months. We will provide realistic timeframes after assessing your specific circumstances.</div>
+        <div class="faq-body">Processing times vary significantly by visa type. Partner visas (820/801) can take 12&ndash;36 months. Skilled independent visas (189/190) typically take 3&ndash;12 months from invitation. Business migration visas (188 stream) can take 12&ndash;24 months. We will provide realistic timeframes after assessing your specific circumstances.</div>
       </details>
-
       <details class="faq-item">
-        <summary>Do you handle regional and state-sponsored visas?</summary>
-        <div class="faq-body">Yes. We assist with state-nominated visas (190), regional sponsored visas (491), and employer-sponsored regional work visas. We also manage Expressions of Interest (EOI) through SkillSelect and advise on maximising your points score.</div>
+        <summary>Do you handle both immigration and general legal matters?</summary>
+        <div class="faq-body">Yes. Bourne Law is a full-service firm handling immigration, conveyancing, litigation, employment law, family law, wills and estates, business migration, and more. Many clients use us for immigration first and return for conveyancing or business matters.</div>
       </details>
-
       <details class="faq-item">
-        <summary>Can you help if I have had a visa refused or cancelled?</summary>
-        <div class="faq-body">Yes. We handle Ministerial Intervention requests, Administrative Appeals Tribunal (AAT) reviews, and Federal Court appeals. Refusals and cancellations are serious -- contact us immediately as strict time limits apply.</div>
+        <summary>What is business migration and who is it for?</summary>
+        <div class="faq-body">Business migration visas (Subclasses 188A&ndash;E) are for business owners, investors, and entrepreneurs who want to establish or invest in a business in Australia. We have extensive experience with high-net-worth clients from China, PNG, the Philippines, and the broader Pacific region.</div>
       </details>
-
       <details class="faq-item">
-        <summary>What legal services do you offer alongside immigration?</summary>
-        <div class="faq-body">As a full-service law firm, we offer conveyancing, civil litigation, employment law, wills and estate planning, family law (including prenuptial agreements), commercial law, criminal and traffic matters, and dispute resolution -- all from the same firm.</div>
+        <summary>Will you lodge applications on my behalf?</summary>
+        <div class="faq-body">We handle all documentation and data entry, however no application is ever lodged without your explicit approval and review. You will review everything before submission. This is our firm policy.</div>
       </details>
-
       <details class="faq-item">
-        <summary>Do you offer fixed-fee pricing?</summary>
-        <div class="faq-body">Where possible, yes. Our self-service products (letter of demand, will kit, statutory declaration, etc.) are fixed-fee. Immigration and litigation matters are quoted per engagement after an initial consultation. All fees are disclosed in a costs agreement before work commences, in compliance with Queensland Law Society requirements.</div>
+        <summary>Can I pay my invoice online?</summary>
+        <div class="faq-body">Yes. Use the &ldquo;Pay Online&rdquo; section below to make a secure payment by card. Please enter your invoice number in the description field so we can allocate it correctly to your matter.</div>
       </details>
-
-      <details class="faq-item">
-        <summary>Do you assist clients from China, PNG, and the Pacific?</summary>
-        <div class="faq-body">Yes -- these are core client groups for Bourne Law. We have extensive experience with Chinese business migration clients (188A-E) and Pacific engagement visas (192). Chinese-language documentation is available for business migration matters.</div>
-      </details>
-
     </div>
-  </div>
-</section>
-
-<!-- CONTACT FORM -->
-<section class="section section--alt" id="contact-form">
-  <div class="section-inner" style="max-width:640px">
-    <div class="section-header">
-      <div class="section-label">Get in touch</div>
-      <h2 class="section-title">Enquire now</h2>
-      <p class="section-sub">Send us your details and we'll get back to you within one business day.</p>
-    </div>
-    <form id="enquiry-form" action="https://formspree.io/f/xlgyrdzp" method="POST">
-      <input type="hidden" name="visa_type" id="form-visa-type" value="" />
-      <div class="form-group">
-        <label for="form-name">Full name</label>
-        <input type="text" id="form-name" name="name" placeholder="Your full name" required />
-      </div>
-      <div class="form-group">
-        <label for="form-email">Email address</label>
-        <input type="email" id="form-email" name="email" placeholder="your@email.com" required />
-      </div>
-      <div class="form-group">
-        <label for="form-phone">Phone number</label>
-        <input type="tel" id="form-phone" name="phone" placeholder="+61 4xx xxx xxx" />
-      </div>
-      <div class="form-group">
-        <label for="form-service">Service required</label>
-        <select id="form-service" name="service">
-          <option value="">Select a service</option>
-          <optgroup label="Immigration visas">
-            <option>Student visa (500)</option>
-            <option>Partner visa (820/801)</option>
-            <option>TSS visa (482)</option>
-            <option>Skilled nominated (190)</option>
-            <option>Pacific engagement (192)</option>
-            <option>Business innovation (188A)</option>
-            <option>Business investment (188B)</option>
-            <option>Significant investor (188C)</option>
-            <option>Premium investor (188D)</option>
-            <option>Entrepreneur (188E)</option>
-            <option>Visitor visa</option>
-            <option>Other visa enquiry</option>
-          </optgroup>
-          <optgroup label="Legal services">
-            <option>Property conveyancing</option>
-            <option>Civil litigation</option>
-            <option>Employment law</option>
-            <option>Wills and estates</option>
-            <option>Business and commercial law</option>
-            <option>Family law</option>
-            <option>Commercial leasing</option>
-            <option>Criminal and traffic law</option>
-            <option>Mediation and dispute resolution</option>
-          </optgroup>
-          <optgroup label="Business services">
-            <option>Business start-up Australia</option>
-            <option>Business start-up international</option>
-            <option>Business sale or acquisition</option>
-          </optgroup>
-          <option>General consultation</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="form-message">Brief description of your matter</label>
-        <textarea id="form-message" name="message" rows="4" placeholder="Tell us a bit about your situation..."></textarea>
-      </div>
-      <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send enquiry</button>
-      <p id="form-msg" style="margin-top:12px;text-align:center;font-size:13px;display:none"></p>
-    </form>
   </div>
 </section>
 
 <!-- PAY ONLINE -->
-<section class="section" id="pay">
-  <div class="section-inner" style="max-width:560px">
+<section class="section section--alt" id="pay">
+  <div class="section-inner" style="max-width:520px">
     <div class="section-header">
-      <div class="section-label">Secure payment</div>
-      <h2 class="section-title">Pay your invoice online</h2>
-      <p class="section-sub">Pay your Bourne Law invoice securely by card. Enter your invoice number and amount below.</p>
+      <div class="section-ornament"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="section-label">Payments</div>
+      <h2 class="section-title">Pay Online</h2>
+      <p class="section-sub">Secure online payment for your Bourne Law invoice. Please have your invoice number ready.</p>
     </div>
     <div class="pay-form">
       <div class="pay-step">
-        <div class="pay-step-label">Invoice details</div>
-        <div class="form-group">
-          <label for="pay-invoice">Invoice number</label>
-          <input type="text" id="pay-invoice" placeholder="e.g. BL-2026-0042" />
-        </div>
-        <div class="form-group">
-          <label for="pay-amount">Amount (AUD)</label>
-          <input type="number" id="pay-amount" placeholder="e.g. 350.00" min="1" step="0.01" />
-        </div>
-        <div class="form-group">
-          <label for="pay-name">Your name</label>
-          <input type="text" id="pay-name" placeholder="Name on invoice" />
-        </div>
+        <div class="pay-step-label">1. Invoice details</div>
+        <div class="form-group-std"><label>Invoice number</label><input type="text" id="invoice-num" placeholder="e.g. INV-0042" /></div>
+        <div class="form-group-std"><label>Your name</label><input type="text" id="pay-name" placeholder="Full name" /></div>
+        <div class="form-group-std" style="margin-bottom:20px"><label>Amount (AUD)</label><input type="number" id="pay-amount" placeholder="0.00" min="1" step="0.01" /></div>
       </div>
       <div class="pay-step">
-        <div class="pay-step-label">Card details</div>
-        <div id="stripe-card" class="stripe-card-element"></div>
-        <div id="card-error" style="color:#e53e3e;font-size:13px;margin-top:8px;display:none"></div>
+        <div class="pay-step-label">2. Card details</div>
+        <div class="stripe-card-element" id="card-element"></div>
+        <div id="card-errors" style="color:#c0392b;font-size:12px;margin-top:6px"></div>
       </div>
-      <button id="pay-btn" class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem">
-        Pay securely &#8594;
-      </button>
-      <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:12px">
-        Payments processed securely via Stripe. Bourne Law never stores your card details.
-      </p>
+      <button id="pay-btn" class="form-submit" style="width:100%;margin-top:1.5rem">Pay securely</button>
+      <div id="pay-success" style="display:none;text-align:center;padding:2rem 0">
+        <div style="font-size:32px;color:var(--teal);margin-bottom:0.75rem">&#10003;</div>
+        <div style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:1px;text-transform:uppercase">Payment Received</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:6px">We will send a receipt to your email shortly.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT / CONTACT -->
-<section class="section section--alt" id="about">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">Contact &amp; location</div>
-      <h2 class="section-title">Bourne Law</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:700px">
-      <div>
-        <h3 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px">Office</h3>
-        <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
-          122 Bundall Road<br>
-          Bundall QLD 4217<br><br>
-          PO Box 6286<br>
-          Gold Coast MC QLD 9726
-        </p>
-      </div>
-      <div>
-        <h3 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px">Contact</h3>
-        <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
-          <a href="mailto:dimitri@bournelaw.com.au" style="color:var(--navy)">dimitri@bournelaw.com.au</a><br>
-          <a href="tel:0755383870" style="color:var(--navy)">07 55 38 38 70</a><br><br>
-          Mon to Fri 9am to 5pm AEST
-        </p>
-      </div>
-    </div>
-    <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:var(--blue-light);border-radius:10px;max-width:700px">
-      <p style="font-size:13px;color:var(--text-muted);margin:0">
-        <strong style="color:var(--navy)">MARA LPN:</strong> 5511816 &middot;
-        <strong style="color:var(--navy)">Queensland Law Society</strong> member
-      </p>
-    </div>
+<!-- BOOK A CONSULTATION -->
+<section class="consult-section" id="contact">
+  <div class="consult-bg"></div>
+  <div class="consult-inner">
+    <div class="section-ornament" style="justify-content:center;margin-bottom:0.75rem"><svg viewBox="0 0 80 20" width="80" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 12 C15 4,25 18,40 10 C55 2,65 16,78 8" fill="none" stroke="#3dbfa8" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <h2 class="consult-title">Book a Consultation</h2>
+    <span class="consult-ornament">&times;</span>
+    <p class="consult-sub">Request your own personal consultation with Bourne Law.</p>
+    <form id="contact-form" action="https://formspree.io/f/xlgyrdzp" method="POST">
+      <input type="hidden" name="_subject" value="Bourne Law Website Enquiry" />
+      <input type="text" name="name" class="form-input" placeholder="NAME" required />
+      <input type="email" name="email" class="form-input" placeholder="EMAIL" required />
+      <input type="tel" name="phone" class="form-input" placeholder="PHONE" />
+      <select name="service" class="form-input" id="service-select" style="appearance:none;-webkit-appearance:none;cursor:pointer;color:#aaa">
+        <option value="" disabled selected>SERVICE</option>
+        <option style="color:#2d2d2d">Partner visa (820/801)</option>
+        <option style="color:#2d2d2d">Skilled visa (189/190)</option>
+        <option style="color:#2d2d2d">TSS visa (482)</option>
+        <option style="color:#2d2d2d">Student visa (500)</option>
+        <option style="color:#2d2d2d">Visitor visa</option>
+        <option style="color:#2d2d2d">Business innovation (188A)</option>
+        <option style="color:#2d2d2d">Investor stream (188B)</option>
+        <option style="color:#2d2d2d">Significant investor (188C)</option>
+        <option style="color:#2d2d2d">Entrepreneur (188E)</option>
+        <option style="color:#2d2d2d">Pacific engagement (192)</option>
+        <option style="color:#2d2d2d">Property conveyancing</option>
+        <option style="color:#2d2d2d">Civil litigation</option>
+        <option style="color:#2d2d2d">Employment law</option>
+        <option style="color:#2d2d2d">Family law</option>
+        <option style="color:#2d2d2d">Wills and estates</option>
+        <option style="color:#2d2d2d">General commercial law</option>
+        <option style="color:#2d2d2d">Initial consultation</option>
+        <option style="color:#2d2d2d">Other</option>
+      </select>
+      <textarea name="message" class="form-textarea" placeholder="MESSAGE" rows="4"></textarea>
+      <button type="submit" class="form-submit">Submit</button>
+    </form>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">
-      <div class="logo-icon" style="width:32px;height:32px;font-size:12px">BL</div>
-      <span>Bourne Law</span>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-icon" style="background:var(--teal);width:30px;height:30px;font-size:10px;border-radius:4px">BL</div>
+          <span>Bourne Law</span>
+        </div>
+        <div class="footer-phone">Tel. 07 55 38 38 70</div>
+        <p style="margin-top:0.5rem"><a href="mailto:dimitri@bournelaw.com.au">dimitri@bournelaw.com.au</a></p>
+        <p style="margin-top:0.75rem">Liability limited by a scheme approved under Professional Standards Legislation</p>
+      </div>
+      <div class="footer-col">
+        <h4>Our Firm</h4>
+        <a href="#our-firm">Who We Are</a>
+        <a href="#how-it-works">What We Do</a>
+        <a href="#our-values">Our Values</a>
+        <a href="#meet-the-team">Meet the Team</a>
+      </div>
+      <div class="footer-col">
+        <h4>Immigration</h4>
+        <a href="#immigration">Partner Visa</a>
+        <a href="#immigration">Skilled Visas</a>
+        <a href="#immigration">Student Visa</a>
+        <a href="#investment">Business Visas</a>
+        <a href="#immigration">General Visas</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#legal">Conveyancing</a>
+        <a href="#legal">Litigation</a>
+        <a href="#legal">Employment Law</a>
+        <a href="#legal">Family Law</a>
+        <a href="#legal">Wills &amp; Estates</a>
+        <a href="#legal">Commercial Law</a>
+      </div>
     </div>
-    <p style="font-size:13px;color:var(--text-muted);margin:0.5rem 0 0">
-      Gold Coast immigration lawyers. MARA registered -- LPN 5511816.
-    </p>
-    <p style="font-size:12px;color:var(--text-muted);margin:1rem 0 0">
-      &#169; 2026 Bourne Law &middot;
-      <a href="privacy.html">Privacy policy</a> &middot;
-      <a href="terms.html">Terms of engagement</a> &middot;
-      <a href="mailto:dimitri@bournelaw.com.au">Contact us</a>
-    </p>
-    <p style="font-size:11px;color:#aab;margin:0.75rem 0 0;max-width:600px;line-height:1.6">
-      The information on this website is general in nature and does not constitute legal advice. Please contact us for advice specific to your circumstances. Bourne Law is a Queensland law practice regulated by the Queensland Law Society.
-    </p>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Bourne Law. All rights reserved. Gold Coast, QLD.</p>
+      <div style="display:flex;gap:1.5rem">
+        <a href="terms.html">Terms of Engagement</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
   </div>
 </footer>
-
-<!-- TOAST -->
-<div id="toast" class="toast" style="display:none"></div>
-
-<!-- MODULE MODAL -->
-<div id="module-modal" class="modal-overlay" style="display:none">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">&times;</button>
-    <div id="modal-content"></div>
-  </div>
-</div>
-
-<script src="main.js"></script>
-<script>
-var enquiryForm = document.getElementById('enquiry-form');
-if (enquiryForm) {
-  enquiryForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    var btn = this.querySelector('button[type="submit"]');
-    var msg = document.getElementById('form-msg');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    try {
-      var resp = await fetch(this.action, {
-        method: 'POST',
-        body: new FormData(this),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (resp.ok) {
-        msg.style.display = 'block';
-        msg.style.color = '#1f7a35';
-        msg.textContent = 'Enquiry sent! We will be in touch within one business day.';
-        this.reset();
-      } else { throw new Error('Server error'); }
-    } catch(err) {
-      msg.style.display = 'block';
-      msg.style.color = '#e53e3e';
-      msg.textContent = 'Something went wrong. Please email dimitri@bournelaw.com.au directly.';
-    }
-    btn.disabled = false;
-    btn.textContent = 'Send enquiry';
-  });
-}
-
-document.querySelectorAll('[data-visa]').forEach(function(btn) {
-  btn.addEventListener('click', function(e) {
-    e.preventDefault();
-    var visaType = this.getAttribute('data-visa');
-    document.getElementById('form-visa-type').value = visaType;
-    var sel = document.getElementById('form-service');
-    if (sel) {
-      var needle = visaType.toLowerCase().replace(/\s*\(.*\)/, '').trim();
-      for (var i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].text.toLowerCase().indexOf(needle) !== -1) { sel.selectedIndex = i; break; }
-      }
-    }
-    document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
-  });
-});
-
-var stripe = Stripe('pk_test_51TkUflJRSvy7vrhHjr4DWgpZkAbf06NV2slkbQCVtTixFMladmNUpEDGFnEkSlkdEEJwkZedHfv0HDs4hVGCVXKs00NuUYHaBC');
-var elements = stripe.elements();
-var cardElement = elements.create('card', {
-  style: {
-    base: { fontFamily: 'system-ui, sans-serif', fontSize: '15px', color: '#0f2654', '::placeholder': { color: '#aab4c8' } },
-    invalid: { color: '#e53e3e' }
-  }
-});
-if (document.getElementById('stripe-card')) { cardElement.mount('#stripe-card'); }
-
-var payBtn = document.getElementById('pay-btn');
-if (payBtn) {
-  payBtn.addEventListener('click', async function() {
-    var invoice = document.getElementById('pay-invoice').value.trim();
-    var amount = parseFloat(document.getElementById('pay-amount').value);
-    var name = document.getElementById('pay-name').value.trim();
-    var errEl = document.getElementById('card-error');
-    if (!invoice || !amount || !name) {
-      errEl.style.display = 'block'; errEl.style.color = '#e53e3e';
-      errEl.textContent = 'Please fill in all fields above.'; return;
-    }
-    this.disabled = true; this.textContent = 'Processing...'; errEl.style.display = 'none';
-    try {
-      var resp = await fetch('/api/intake', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ invoice: invoice, amount: Math.round(amount * 100), name: name })
-      });
-      var data = await resp.json();
-      if (!data.clientSecret) throw new Error(data.error || 'Server error');
-      var result = await stripe.confirmCardPayment(data.clientSecret, {
-        payment_method: { card: cardElement, billing_details: { name: name } }
-      });
-      if (result.error) throw new Error(result.error.message);
-      errEl.style.display = 'block'; errEl.style.color = '#1f7a35';
-      errEl.textContent = 'Payment successful! You will receive a receipt by email shortly.';
-    } catch(err) {
-      errEl.style.display = 'block'; errEl.style.color = '#e53e3e'; errEl.textContent = err.message;
-    }
-    this.disabled = false; this.textContent = 'Pay securely';
-  });
-}
-</script>
 
 <!-- QUICK ENQUIRY MODAL -->
 <div id="qe-modal" style="display:none" class="qe-overlay" onclick="if(event.target===this)closeQE()">
   <div class="qe-box">
     <div class="qe-header">
-      <div class="qe-header-text">
-        <div class="qe-service-name" id="qe-service-name">Enquiry</div>
+      <div>
+        <div class="qe-service-name" id="qe-service-name">Enquiry about:</div>
         <div class="qe-title" id="qe-title">How can we help?</div>
       </div>
       <button class="qe-close" onclick="closeQE()">&#215;</button>
     </div>
     <div class="qe-body" id="qe-body">
       <form id="qe-form">
-        <div class="form-group">
-          <label>Your name</label>
-          <input type="text" name="name" id="qe-name" placeholder="Full name" required />
-        </div>
-        <div class="form-group">
-          <label>Email address</label>
-          <input type="email" name="email" id="qe-email" placeholder="your@email.com" required />
-        </div>
-        <div class="form-group">
-          <label>Phone (optional)</label>
-          <input type="tel" name="phone" id="qe-phone" placeholder="+61 4xx xxx xxx" />
-        </div>
-        <div class="form-group">
-          <label>Briefly describe your situation</label>
-          <textarea name="message" id="qe-message" rows="3" placeholder="A few sentences is fine -- we will follow up to gather the details..."></textarea>
-        </div>
+        <div class="form-group-std"><label>Your name</label><input type="text" name="name" id="qe-name" placeholder="Full name" required /></div>
+        <div class="form-group-std"><label>Email address</label><input type="email" name="email" id="qe-email" placeholder="your@email.com" required /></div>
+        <div class="form-group-std"><label>Phone (optional)</label><input type="tel" name="phone" id="qe-phone" placeholder="+61 4xx xxx xxx" /></div>
+        <div class="form-group-std"><label>Briefly describe your situation</label><textarea name="message" id="qe-message" rows="3" placeholder="A few sentences is fine..."></textarea></div>
         <input type="hidden" name="service" id="qe-service-hidden" />
-        <button type="submit" class="qe-submit" id="qe-submit-btn">Send enquiry &#8594;</button>
-        <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:10px">We respond within one business day. No obligation.</p>
+        <button type="submit" class="qe-submit" id="qe-submit-btn">Send enquiry &rarr;</button>
+        <p class="qe-note">We respond within one business day. No obligation.</p>
       </form>
     </div>
   </div>
 </div>
 
+<!-- MODULE MODAL -->
+<div id="module-modal" style="display:none" class="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&#215;</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-// ── SMART SEARCH ────────────────────────────────
+// ── STRIPE ──────────────────────────────────────
+var stripe = Stripe('pk_test_51TkUflJRSvy7vrhHjr4DWgpZkAbf06NV2slkbQCVtTixFMladmNUpEDGFnEkSlkdEEJwkZedHfv0HDs4hVGCVXKs00NuUYHaBC');
+var elements = stripe.elements();
+var cardEl = elements.create('card', {style:{base:{fontFamily:'Helvetica Neue,Arial,sans-serif',fontSize:'14px',color:'#2d2d2d','::placeholder':{color:'#aaa'}}}});
+cardEl.mount('#card-element');
+cardEl.on('change', function(e){ document.getElementById('card-errors').textContent = e.error ? e.error.message : ''; });
+document.getElementById('pay-btn').addEventListener('click', async function(){
+  var btn = this;
+  var amount = Math.round(parseFloat(document.getElementById('pay-amount').value || '0') * 100);
+  var name = document.getElementById('pay-name').value;
+  var inv = document.getElementById('invoice-num').value;
+  if (!amount || amount < 100) { alert('Please enter a valid amount (minimum $1.00)'); return; }
+  if (!name) { alert('Please enter your name'); return; }
+  btn.disabled = true; btn.textContent = 'Processing...';
+  try {
+    var r = await fetch('/api/intake', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount,name,invoice:inv})});
+    var d = await r.json();
+    if (!d.clientSecret) throw new Error('No client secret');
+    var result = await stripe.confirmCardPayment(d.clientSecret, {payment_method:{card:cardEl,billing_details:{name:name}}});
+    if (result.error) { document.getElementById('card-errors').textContent = result.error.message; btn.disabled=false; btn.textContent='Pay securely'; }
+    else { document.getElementById('pay-success').style.display='block'; btn.style.display='none'; }
+  } catch(err) { document.getElementById('card-errors').textContent = 'Payment error. Please call us on 07 55 38 38 70.'; btn.disabled=false; btn.textContent='Pay securely'; }
+});
+
+// ── SMART SEARCH ─────────────────────────────────
 var serviceIndex = [
-  { label: 'Partner visa (820/801)', desc: 'Spouse or de facto partner', icon: '&#10084;', tag: 'Immigration', action: function(){ quickEnquire('Partner visa (820/801)'); } },
-  { label: 'Student visa (500)', desc: 'Study at an Australian institution', icon: '&#127891;', tag: 'Immigration', action: function(){ quickEnquire('Student visa (500)'); } },
-  { label: 'Significant investor visa (188C)', desc: 'AUD $5M investment stream', icon: '&#128176;', tag: 'Business migration', action: function(){ quickEnquire('Significant investor (188C)'); } },
-  { label: 'Business innovation visa (188A)', desc: 'Business owner with EOI + nomination', icon: '&#127968;', tag: 'Business migration', action: function(){ quickEnquire('Business innovation (188A)'); } },
-  { label: 'Entrepreneur visa (188E)', desc: 'AUD $200k+ funding agreement', icon: '&#128640;', tag: 'Business migration', action: function(){ quickEnquire('Entrepreneur (188E)'); } },
-  { label: 'Pacific engagement visa (192)', desc: 'PNG and Pacific nationals', icon: '&#127754;', tag: 'Immigration', action: function(){ quickEnquire('Pacific engagement (192)'); } },
-  { label: 'Skilled nominated visa (190)', desc: 'State-nominated permanent residency', icon: '&#11088;', tag: 'Immigration', action: function(){ quickEnquire('Skilled nominated (190)'); } },
-  { label: 'TSS / work visa (482)', desc: 'Employer-sponsored work visa', icon: '&#128188;', tag: 'Immigration', action: function(){ quickEnquire('TSS visa (482)'); } },
-  { label: 'Visitor / tourist visa', desc: 'Short stay for tourism or family', icon: '&#9992;', tag: 'Immigration', action: function(){ quickEnquire('Visitor visa'); } },
-  { label: 'Property conveyancing', desc: 'Buy or sell a home or business property', icon: '&#127968;', tag: 'Legal', action: function(){ quickEnquire('Property conveyancing'); } },
-  { label: 'Civil litigation', desc: 'Disputes, debt recovery, court matters', icon: '&#9878;', tag: 'Legal', action: function(){ quickEnquire('Civil litigation'); } },
-  { label: 'Employment law', desc: 'Unfair dismissal, underpayment, Fair Work', icon: '&#128188;', tag: 'Legal', action: function(){ quickEnquire('Employment law'); } },
-  { label: 'Will and estate planning', desc: 'Draft a will, power of attorney, estate admin', icon: '&#128221;', tag: 'Legal', action: function(){ openModule('will'); } },
-  { label: 'Family law / divorce', desc: 'Separation, property, parenting plans', icon: '&#128106;', tag: 'Legal', action: function(){ quickEnquire('Family law'); } },
-  { label: 'Prenuptial agreement (BFA)', desc: 'Binding Financial Agreement before marriage', icon: '&#128141;', tag: 'Legal', action: function(){ openModule('bfa'); } },
-  { label: 'Business start-up Australia', desc: 'ASIC company, ABN, structure advice', icon: '&#128640;', tag: 'Business', action: function(){ quickEnquire('Business start-up Australia'); } },
-  { label: 'Business start-up China / international', desc: 'Expand your business into Australia', icon: '&#127758;', tag: 'Business', action: function(){ quickEnquire('Business start-up international'); } },
-  { label: 'Sell or buy a business', desc: 'Business sale contracts, due diligence, FIRB', icon: '&#128200;', tag: 'Business', action: function(){ quickEnquire('Business sale or acquisition'); } },
-  { label: 'Commercial leasing', desc: 'Retail, commercial, industrial leases', icon: '&#127970;', tag: 'Legal', action: function(){ quickEnquire('Commercial leasing'); } },
-  { label: 'Criminal or traffic law', desc: 'Court representation, drink driving, bail', icon: '&#128663;', tag: 'Legal', action: function(){ quickEnquire('Criminal and traffic law'); } },
-  { label: 'Letter of demand', desc: 'Owed money? Solicitor-signed same day', icon: '&#9889;', tag: 'Self-service', action: function(){ openModule('demand'); } },
-  { label: 'Statutory declaration', desc: 'Stat dec drafted and reviewed', icon: '&#128196;', tag: 'Self-service', action: function(){ openModule('statdec'); } },
-  { label: 'Character reference letter', desc: 'Professional reference on letterhead', icon: '&#128336;', tag: 'Self-service', action: function(){ openModule('charref'); } },
-  { label: 'Visa eligibility assessment', desc: 'Find which visa suits you -- written report', icon: '&#128706;', tag: 'Self-service', action: function(){ openModule('eligibility'); } },
-  { label: 'Book a consultation', desc: '60-minute session with Dimitri, any topic', icon: '&#128197;', tag: 'Popular', action: function(){ openModule('consultation'); } },
-  { label: 'Pay an invoice', desc: 'Secure online payment for your Bourne Law bill', icon: '&#128179;', tag: 'Payment', action: function(){ document.getElementById('pay').scrollIntoView({behavior:'smooth'}); } },
-  { label: 'Mediation / dispute resolution', desc: 'Resolve disputes without going to court', icon: '&#129309;', tag: 'Legal', action: function(){ quickEnquire('Mediation and dispute resolution'); } },
+  {label:'Partner visa (820/801)',desc:'Spouse or de facto partner',icon:'&#10084;',tag:'Immigration',action:function(){quickEnquire('Partner visa (820/801)');} },
+  {label:'Student visa (500)',desc:'Study at an Australian institution',icon:'&#127891;',tag:'Immigration',action:function(){quickEnquire('Student visa (500)');} },
+  {label:'Significant investor (188C)',desc:'High-net-worth investment stream',icon:'&#128176;',tag:'Business migration',action:function(){quickEnquire('Significant investor (188C)');} },
+  {label:'Business innovation (188A)',desc:'Business owner with EOI + nomination',icon:'&#127968;',tag:'Business migration',action:function(){quickEnquire('Business innovation (188A)');} },
+  {label:'Entrepreneur (188E)',desc:'Qualifying funding agreement required',icon:'&#128640;',tag:'Business migration',action:function(){quickEnquire('Entrepreneur (188E)');} },
+  {label:'Pacific engagement (192)',desc:'PNG and Pacific nationals',icon:'&#127754;',tag:'Immigration',action:function(){quickEnquire('Pacific engagement (192)');} },
+  {label:'Skilled nominated (190)',desc:'State-nominated permanent residency',icon:'&#11088;',tag:'Immigration',action:function(){quickEnquire('Skilled nominated (190)');} },
+  {label:'TSS visa (482)',desc:'Employer-sponsored work visa',icon:'&#128188;',tag:'Immigration',action:function(){quickEnquire('TSS visa (482)');} },
+  {label:'Visitor visa',desc:'Short stay for tourism or family',icon:'&#9992;',tag:'Immigration',action:function(){quickEnquire('Visitor visa');} },
+  {label:'Property conveyancing',desc:'Buy or sell a property',icon:'&#127968;',tag:'Legal',action:function(){quickEnquire('Property conveyancing');} },
+  {label:'Civil litigation',desc:'Disputes, debt recovery, court matters',icon:'&#9878;',tag:'Legal',action:function(){quickEnquire('Civil litigation');} },
+  {label:'Employment law',desc:'Unfair dismissal, underpayment, Fair Work',icon:'&#128188;',tag:'Legal',action:function(){quickEnquire('Employment law');} },
+  {label:'Wills and estates',desc:'Draft a will, power of attorney, estate',icon:'&#128221;',tag:'Legal',action:function(){openModule('will');} },
+  {label:'Family law',desc:'Separation, property, parenting plans',icon:'&#128106;',tag:'Legal',action:function(){quickEnquire('Family law');} },
+  {label:'BFA / prenuptial agreement',desc:'Binding Financial Agreement',icon:'&#128141;',tag:'Legal',action:function(){openModule('bfa');} },
+  {label:'Business start-up',desc:'ASIC company, ABN, structure advice',icon:'&#128640;',tag:'Business',action:function(){quickEnquire('Business start-up');} },
+  {label:'Sell or buy a business',desc:'Business sale contracts, due diligence',icon:'&#128200;',tag:'Business',action:function(){quickEnquire('Business sale or acquisition');} },
+  {label:'Commercial leasing',desc:'Retail, commercial, industrial leases',icon:'&#127970;',tag:'Legal',action:function(){quickEnquire('Commercial leasing');} },
+  {label:'Criminal or traffic law',desc:'Court representation, drink driving, bail',icon:'&#128663;',tag:'Legal',action:function(){quickEnquire('Criminal and traffic law');} },
+  {label:'Letter of demand',desc:'Owed money? Solicitor-signed same day',icon:'&#9889;',tag:'Self-service',action:function(){openModule('demand');} },
+  {label:'Statutory declaration',desc:'Stat dec drafted and witnessed',icon:'&#128196;',tag:'Self-service',action:function(){openModule('statdec');} },
+  {label:'Character reference letter',desc:'Professional reference on letterhead',icon:'&#128336;',tag:'Self-service',action:function(){openModule('charref');} },
+  {label:'Visa eligibility assessment',desc:'Find which visa suits you',icon:'&#128706;',tag:'Self-service',action:function(){openModule('eligibility');} },
+  {label:'Book a consultation',desc:'60-minute session, any topic',icon:'&#128197;',tag:'Popular',action:function(){openModule('consultation');} },
+  {label:'Pay an invoice',desc:'Secure online payment',icon:'&#128179;',tag:'Payment',action:function(){document.getElementById('pay').scrollIntoView({behavior:'smooth'});} },
 ];
-
 var keywords = {
-  'partner': 0, 'spouse': 0, 'de facto': 0, 'defacto': 0, 'wife': 0, 'husband': 0, 'girlfriend': 0, 'boyfriend': 0, 'fiance': 0,
-  'student': 1, 'study': 1, 'university': 1, 'school': 1, 'college': 1, 'tafe': 1,
-  'investor': 2, '188c': 2, 'significant': 2, '5m': 2, 'five million': 2, '5 million': 2,
-  '188a': 3, 'business innovation': 3, 'innovation': 3,
-  '188e': 4, 'entrepreneur': 4, 'startup visa': 4, 'start up visa': 4,
-  'pacific': 5, 'png': 5, 'papua': 5, 'fiji': 5, 'vanuatu': 5, '192': 5,
-  '190': 6, 'skilled': 6, 'nominated': 6, 'points': 6, 'eoI': 6,
-  '482': 7, 'work visa': 7, 'employer sponsored': 7, 'tss': 7, 'sponsored': 7,
-  'visitor': 8, 'tourist': 8, 'holiday': 8, 'visit': 8,
-  'conveyancing': 9, 'property': 9, 'buy house': 9, 'sell house': 9, 'settlement': 9, 'contract of sale': 9, 'house': 9, 'apartment': 9,
-  'litigation': 10, 'dispute': 10, 'debt': 10, 'court': 10, 'sue': 10, 'legal action': 10, 'owe': 10, 'recover': 10,
-  'employment': 11, 'unfair dismissal': 11, 'fired': 11, 'dismissed': 11, 'underpaid': 11, 'workplace': 11, 'fair work': 11, 'redundant': 11,
-  'will': 12, 'testament': 12, 'estate': 12, 'power of attorney': 12, 'poa': 12, 'executor': 12, 'beneficiary': 12,
-  'family': 13, 'divorce': 13, 'separation': 13, 'parenting': 13, 'custody': 13,
-  'prenup': 14, 'prenuptial': 14, 'bfa': 14, 'binding financial': 14, 'marriage agreement': 14,
-  'start up': 15, 'startup': 15, 'company': 15, 'asic': 15, 'abn': 15, 'register': 15, 'new business': 15,
-  'china': 16, 'chinese': 16, 'international business': 16, 'expand': 16,
-  'sell business': 17, 'buy business': 17, 'acquisition': 17, 'due diligence': 17, 'goodwill': 17,
-  'lease': 18, 'leasing': 18, 'rental': 18, 'landlord': 18, 'tenant': 18, 'commercial lease': 18,
-  'criminal': 19, 'traffic': 19, 'drink driving': 19, 'dui': 19, 'licence': 19, 'fine': 19, 'offence': 19,
-  'letter of demand': 20, 'demand letter': 20, 'money owed': 20,
-  'stat dec': 21, 'statutory': 21, 'declaration': 21,
-  'reference': 22, 'character': 22,
-  'which visa': 23, 'eligibility': 23, 'qualify': 23, 'assessment': 23, 'not sure': 23,
-  'consultation': 24, 'advice': 24, 'consult': 24, 'speak': 24, 'talk': 24, 'help': 24, 'unsure': 24,
-  'pay': 25, 'invoice': 25, 'payment': 25, 'bill': 25,
-  'mediation': 26, 'mediate': 26, 'resolve': 26,
+  'partner':0,'spouse':0,'de facto':0,'wife':0,'husband':0,'fiance':0,
+  'student':1,'study':1,'university':1,'tafe':1,'college':1,
+  '188c':2,'significant':2,'investor':2,
+  '188a':3,'business innovation':3,'innovation':3,
+  '188e':4,'entrepreneur':4,
+  'pacific':5,'png':5,'papua':5,'fiji':5,'vanuatu':5,'192':5,
+  '190':6,'skilled':6,'nominated':6,'points':6,
+  '482':7,'work visa':7,'tss':7,'sponsored':7,
+  'visitor':8,'tourist':8,'holiday':8,'visit':8,
+  'conveyancing':9,'property':9,'house':9,'settlement':9,'buy home':9,'sell home':9,
+  'litigation':10,'dispute':10,'debt':10,'court':10,'sue':10,'owe':10,
+  'employment':11,'unfair dismissal':11,'fired':11,'underpaid':11,'fair work':11,
+  'will':12,'estate':12,'power of attorney':12,'executor':12,
+  'family':13,'divorce':13,'separation':13,'parenting':13,'custody':13,
+  'prenup':14,'bfa':14,'binding financial':14,
+  'start up':15,'startup':15,'abn':15,'asic':15,'company':15,
+  'sell business':16,'buy business':16,'acquisition':16,'goodwill':16,
+  'lease':17,'leasing':17,'landlord':17,'tenant':17,
+  'criminal':18,'traffic':18,'drink driving':18,'dui':18,
+  'letter of demand':19,'demand letter':19,'money owed':19,
+  'stat dec':20,'statutory':20,'declaration':20,
+  'reference':21,'character':21,
+  'eligibility':22,'which visa':22,'qualify':22,'not sure':22,
+  'consultation':23,'advice':23,'consult':23,'help':23,'unsure':23,
+  'pay':24,'invoice':24,'payment':24,'bill':24,
 };
-
 function searchServices(q) {
   q = q.toLowerCase().trim();
   if (!q || q.length < 2) return [];
   var hits = {};
-  // keyword matching
   Object.keys(keywords).forEach(function(kw) {
     if (q.indexOf(kw) !== -1 || kw.indexOf(q) !== -1) {
       var idx = keywords[kw];
       hits[idx] = (hits[idx] || 0) + (kw.length >= q.length ? 2 : 1);
     }
   });
-  // word matching against labels/desc
   var words = q.split(/\s+/).filter(function(w){ return w.length > 2; });
-  serviceIndex.forEach(function(s, i) {
+  serviceIndex.forEach(function(s,i) {
     words.forEach(function(w) {
-      if (s.label.toLowerCase().indexOf(w) !== -1 || s.desc.toLowerCase().indexOf(w) !== -1) {
-        hits[i] = (hits[i] || 0) + 1;
-      }
+      if (s.label.toLowerCase().indexOf(w)!==-1||s.desc.toLowerCase().indexOf(w)!==-1) hits[i]=(hits[i]||0)+1;
     });
   });
-  var ranked = Object.keys(hits).map(Number).sort(function(a,b){ return hits[b]-hits[a]; });
-  return ranked.slice(0, 5).map(function(i){ return serviceIndex[i]; });
+  return Object.keys(hits).map(Number).sort(function(a,b){return hits[b]-hits[a];}).slice(0,5).map(function(i){return serviceIndex[i];});
 }
-
 var searchInput = document.getElementById('hero-search');
 var suggestionsEl = document.getElementById('search-suggestions');
 var activeIdx = -1;
-
 function renderSuggestions(items) {
   if (!items.length) { suggestionsEl.classList.remove('open'); return; }
-  suggestionsEl.innerHTML = items.map(function(s, i) {
-    return '<div class="suggestion-item" data-idx="' + i + '" onclick="selectSuggestion(' + i + ')">' +
-      '<span class="suggestion-icon">' + s.icon + '</span>' +
-      '<div><div class="suggestion-label">' + s.label + '</div>' +
-      '<div class="suggestion-desc">' + s.desc + '</div></div>' +
-      '<span class="suggestion-tag">' + s.tag + '</span>' +
-      '</div>';
+  suggestionsEl.innerHTML = items.map(function(s,i) {
+    return '<div class="suggestion-item" onclick="selectSuggestion('+i+')"><span class="suggestion-icon">'+s.icon+'</span><div><div class="suggestion-label">'+s.label+'</div><div class="suggestion-desc">'+s.desc+'</div></div><span class="suggestion-tag">'+s.tag+'</span></div>';
   }).join('');
   suggestionsEl._items = items;
   suggestionsEl.classList.add('open');
   activeIdx = -1;
 }
-
 function selectSuggestion(i) {
   var items = suggestionsEl._items;
-  if (!items || !items[i]) return;
+  if (!items||!items[i]) return;
   suggestionsEl.classList.remove('open');
   searchInput.value = '';
   items[i].action();
 }
-
 if (searchInput) {
-  searchInput.addEventListener('input', function() {
-    renderSuggestions(searchServices(this.value));
-  });
+  searchInput.addEventListener('input', function(){ renderSuggestions(searchServices(this.value)); });
   searchInput.addEventListener('keydown', function(e) {
     var items = document.querySelectorAll('.suggestion-item');
-    if (e.key === 'ArrowDown') { activeIdx = Math.min(activeIdx + 1, items.length - 1); items.forEach(function(el,i){ el.style.background = i===activeIdx ? 'var(--bg-alt)' : ''; }); e.preventDefault(); }
-    else if (e.key === 'ArrowUp') { activeIdx = Math.max(activeIdx - 1, 0); items.forEach(function(el,i){ el.style.background = i===activeIdx ? 'var(--bg-alt)' : ''; }); e.preventDefault(); }
-    else if (e.key === 'Enter') { if (activeIdx >= 0) { selectSuggestion(activeIdx); } else { var res = searchServices(this.value); if (res.length) { res[0].action(); suggestionsEl.classList.remove('open'); this.value=''; } } e.preventDefault(); }
-    else if (e.key === 'Escape') { suggestionsEl.classList.remove('open'); }
+    if (e.key==='ArrowDown') { activeIdx=Math.min(activeIdx+1,items.length-1); items.forEach(function(el,i){el.style.background=i===activeIdx?'var(--grey-bg)':'';});e.preventDefault(); }
+    else if (e.key==='ArrowUp') { activeIdx=Math.max(activeIdx-1,0); items.forEach(function(el,i){el.style.background=i===activeIdx?'var(--grey-bg)':'';});e.preventDefault(); }
+    else if (e.key==='Enter') { if(activeIdx>=0){selectSuggestion(activeIdx);}else{var r=searchServices(this.value);if(r.length){r[0].action();suggestionsEl.classList.remove('open');this.value='';}}e.preventDefault(); }
+    else if (e.key==='Escape') { suggestionsEl.classList.remove('open'); }
   });
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.hero-search-wrap')) suggestionsEl.classList.remove('open');
-  });
+  document.addEventListener('click', function(e){ if(!e.target.closest('.hero-search-wrap')) suggestionsEl.classList.remove('open'); });
   document.getElementById('hero-search-btn').addEventListener('click', function() {
-    var res = searchServices(searchInput.value);
-    if (res.length) { res[0].action(); suggestionsEl.classList.remove('open'); searchInput.value=''; }
+    var r = searchServices(searchInput.value);
+    if (r.length) { r[0].action(); suggestionsEl.classList.remove('open'); searchInput.value=''; }
     else { alert('Try describing what you need, e.g. "partner visa" or "letter of demand"'); }
   });
 }
 
-// ── QUICK ENQUIRY MODAL ─────────────────────────
+// ── QUICK ENQUIRY MODAL ──────────────────────────
 var _qeOrigHTML = null;
 function quickEnquire(service) {
   var bodyEl = document.getElementById('qe-body');
-  // Store original form HTML on first call
   if (!_qeOrigHTML) _qeOrigHTML = bodyEl.innerHTML;
-  // Restore form HTML (in case success message replaced it)
   bodyEl.innerHTML = _qeOrigHTML;
   document.getElementById('qe-service-name').textContent = 'Enquiry about:';
   document.getElementById('qe-title').textContent = service;
@@ -1017,17 +862,16 @@ function quickEnquire(service) {
   var modal = document.getElementById('qe-modal');
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  setTimeout(function(){ document.getElementById('qe-name').focus(); }, 50);
+  setTimeout(function(){ var n=document.getElementById('qe-name'); if(n) n.focus(); }, 50);
   bindQEForm(service);
 }
-
 function bindQEForm(service) {
   var form = document.getElementById('qe-form');
   if (!form) return;
   form.onsubmit = async function(e) {
     e.preventDefault();
     var btn = document.getElementById('qe-submit-btn');
-    btn.disabled = true; btn.textContent = 'Sending...';
+    btn.disabled=true; btn.textContent='Sending...';
     var data = new FormData();
     data.append('service', service);
     data.append('name', document.getElementById('qe-name').value);
@@ -1035,35 +879,66 @@ function bindQEForm(service) {
     data.append('phone', document.getElementById('qe-phone').value);
     data.append('message', document.getElementById('qe-message').value);
     try {
-      var r = await fetch('https://formspree.io/f/xlgyrdzp', { method:'POST', body:data, headers:{'Accept':'application/json'} });
+      var r = await fetch('https://formspree.io/f/xlgyrdzp', {method:'POST',body:data,headers:{'Accept':'application/json'}});
       if (r.ok) {
-        document.getElementById('qe-body').innerHTML =
-          '<div class="qe-success">' +
-          '<span class="qe-success-icon">&#10003;</span>' +
-          '<h4>Enquiry sent!</h4>' +
-          '<p>We have received your enquiry about <strong>' + service + '</strong>.<br>We will be in touch within one business day.</p>' +
-          '<button onclick="closeQE()" style="margin-top:1.5rem;background:var(--navy);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;">Close</button>' +
-          '</div>';
+        document.getElementById('qe-body').innerHTML = '<div class="qe-success"><span class="qe-success-icon">&#10003;</span><h4>Enquiry Sent</h4><p>We have received your enquiry about <strong>'+service+'</strong>.<br>We will be in touch within one business day.</p><button onclick="closeQE()" style="margin-top:1.5rem;background:var(--teal);color:#fff;border:none;padding:11px 28px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer">Close</button></div>';
       } else { throw new Error(); }
     } catch(err) {
-      btn.disabled = false; btn.textContent = 'Send enquiry';
+      btn.disabled=false; btn.textContent='Send enquiry';
       alert('Something went wrong. Please email dimitri@bournelaw.com.au directly.');
     }
   };
 }
-
 function closeQE() {
-  document.getElementById('qe-modal').style.display = 'none';
-  document.body.style.overflow = '';
+  document.getElementById('qe-modal').style.display='none';
+  document.body.style.overflow='';
 }
 
-// Hamburger
+// ── MODULE MODAL ─────────────────────────────────
+var moduleData = {
+  consultation: {title:'Book a Consultation',body:'<p>Schedule a 60-minute session with Dimitri Bourne. You can discuss any immigration or legal matter and receive clear, written advice.</p><p style="margin-top:1rem"><strong>What to bring:</strong> Any relevant documents, previous correspondence, or visa paperwork.</p>'},
+  eligibility: {title:'Visa Eligibility Assessment',body:'<p>Not sure which visa is right for you? Complete our eligibility questionnaire and we will provide a written assessment of your options and recommended pathways.</p>'},
+  will: {title:'Will &amp; Testament',body:'<p>A professionally drafted will that clearly expresses your wishes. Includes guidance on executors, beneficiaries and specific bequests. Enduring Power of Attorney available as an add-on.</p>'},
+  demand: {title:'Letter of Demand',body:'<p>If you are owed money, a formal solicitor-signed letter of demand is often the fastest way to recover it. We draft, sign and send it on Bourne Law letterhead, same business day.</p><p style="margin-top:1rem"><b>What we need:</b> The debtor's name and address, amount owed, and a brief description of what the debt relates to.</p>'},
+  statdec: {title:'Statutory Declaration',body:'<p>We draft your statutory declaration to the correct legal standard, then review and witness it. Suitable for any purpose &mdash; immigration, legal, financial or personal.</p>'},
+  charref: {title:'Character Reference Letter',body:'<p>A professionally drafted character reference letter on Bourne Law letterhead. Tailored for court, visa, or employment purposes. We gather the necessary details and turn it around within one business day.</p>'},
+  bfa: {title:'Binding Financial Agreement',body:'<p>A Binding Financial Agreement (prenuptial or during marriage) protects your assets with a legally enforceable agreement. Both parties must obtain independent legal advice. We handle your side of the process.</p>'},
+  contract: {title:'Contract Review',body:'<p>Upload your contract and we will provide a written summary of the key terms, risks, and our recommended amendments before you sign. Suitable for employment contracts, commercial agreements, or leases.</p>'},
+};
+function openModule(id) {
+  var data = moduleData[id];
+  if (!data) return;
+  document.getElementById('modal-content').innerHTML =
+    '<div style="padding:2rem"><h2 style="font-size:1.2rem;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--dark);margin-bottom:1.25rem">'+data.title+'</h2>'+
+    '<div style="font-size:14px;color:var(--text-muted);line-height:1.85">'+data.body+'</div>'+
+    '<button onclick="closeModal();quickEnquire(''+data.title+'')" style="margin-top:2rem;background:var(--teal);color:#fff;border:none;padding:13px 28px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%">Enquire about this service</button></div>';
+  document.getElementById('module-modal').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeModal() {
+  document.getElementById('module-modal').style.display='none';
+  document.body.style.overflow='';
+}
+
+// ── CONTACT FORM ─────────────────────────────────
+var contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = contactForm.querySelector('button[type=submit]');
+    btn.disabled=true; btn.textContent='Sending...';
+    try {
+      var r = await fetch('https://formspree.io/f/xlgyrdzp', {method:'POST',body:new FormData(contactForm),headers:{'Accept':'application/json'}});
+      if (r.ok) { btn.textContent='Sent!'; setTimeout(function(){contactForm.reset();btn.disabled=false;btn.textContent='Submit';},3000); }
+      else { throw new Error(); }
+    } catch(err) { btn.disabled=false; btn.textContent='Submit'; alert('Something went wrong. Please email dimitri@bournelaw.com.au'); }
+  });
+}
+
+// ── HAMBURGER ────────────────────────────────────
 var ham = document.getElementById('hamburger');
 var mob = document.getElementById('mobile-menu');
-if (ham && mob) {
-  ham.addEventListener('click', function() { mob.classList.toggle('open'); });
-}
+if (ham && mob) { ham.addEventListener('click', function(){ mob.classList.toggle('open'); }); }
 </script>
-
 </body>
 </html>
